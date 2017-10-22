@@ -1,4 +1,4 @@
-<div class="container tab-pane active" id="registrar">
+<div class="container tab-pane" id="registrar">
     <div class="row">
         <div class="col-sm-6 col-md-6 col-md-offset-3">
             <div class="panel-registrar bg-blanco">
