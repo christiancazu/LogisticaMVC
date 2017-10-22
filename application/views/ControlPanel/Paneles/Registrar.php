@@ -42,14 +42,14 @@
 
                         </div>
                         <div class="form-group">
-                            <div class="alert alert-danger alert-dismissable fade-in alert-error hidden" id="alert-error">
+                            <div class="alert alert-danger alert-dismissable fade-in alert-error hidden-error" id="alert-error">
                                 <a href="#" class="close" id="alert-close">&times;</a>
                                 <strong> Error </strong> <i class="fa fa-times-circle fa-2x"></i> 
                                 <p>El Expediente ya está Registrado.</p>     
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="alert alert-success alert-dismissable fade-in  alert-correcto hidden" id="alert-correcto">
+                            <div class="alert alert-success alert-dismissable fade-in  alert-correcto hidden-correcto" id="alert-correcto">
                                 <a href="#" class="close" id="alert-closex">&times;</a>
                                 <strong> Correcto </strong> <i class="fa fa-check fa-2x"></i>
                                 

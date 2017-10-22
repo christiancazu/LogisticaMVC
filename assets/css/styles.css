@@ -328,10 +328,11 @@ background: red:
     border-color: rgb(238, 162, 54);
 }
 .input-group-addon.danger {
-    color: rgb(0, 0, 0);
+  /*  color: rgb(0, 0, 0);
     background-color: none;
     border-color: none);
-    border-style: solid;
+    border-style: solid;*/
+      
 
 }
 .input-group-addon.default {
@@ -370,7 +371,17 @@ background: red:
     opacity: 0;
     transition: opacity 2.5s linear;
 }
-
+.hidden-error {
+    
+    display: none;
+}
+.hidden-correcto {
+    display: none;
+}
+.hiddenx {    
+    opacity: 0;    
+    transition: opacity 2.5s ease;
+}
 /*****************************************
 *****|PANELUSUARIO/PANELES/CONSULTAR|*****
 *****************************************/
@@ -580,6 +591,27 @@ background: red:
     font-weight: 900;
     font-size: 10px;
 
+}
+.pricing-table {
+    transform: scale(1);
+    transition-duration: 0.75s;
+}
+
+.pricing-table:hover {
+    border: 4px solid black;
+    background: #0080C0;
+    transform: scale(1.1);
+    transition-duration: 0.75s;
+}
+
+.pricing-table:hover .type {
+
+    color: white;
+}
+
+.pricing-table:hover .price-wrap {
+
+    background: white;
 }
 .img-controlpanel {
     height: 60px;
