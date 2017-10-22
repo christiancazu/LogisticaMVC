@@ -11,24 +11,41 @@ Validación de Login con BD : 100%
 Identificaciòn de Sessión del Usuario Identificado : 100%
 
 # Pantalla ControlPanel
-Estructura de módulos establecida
 
-Redirecciones validadas a cada módulo
+-Estructura de módulos establecida
+
+-Redirecciones validadas a cada módulo
+
+-Validación de sessión a los eventos del ControlPanel
 
 # Módulos
 
--Registrar: ....
+-Registrar : [Operativo]
 
--Consultar:  ....
+-Formulario validado a recibir código de expediente en el formato : 00-00-A-0000-0
 
--Enviar:  ....
+-Registro de expediente validado que no se pueda registrar si ya existe.
 
--Recepcionar: ....
+-Mensaje de alerta : error & correcto.
 
--Reporte:  ....
+-Consultar:  [En Analisis]
 
--Salir:  .....
+....
 
-Cancelar Sesión : 100%
+-Enviar:  [En Analisis]
 
-Salida de aplicación 100%
+....
+
+-Recepcionar: [En Analisis]
+
+....
+
+-Reporte:  [En Analisis]
+
+....
+
+-Salir:  [Operativo]
+
+-Cancela Sesión : 100%
+
+-Salida y redirección fuera de la aplicación : 100%
