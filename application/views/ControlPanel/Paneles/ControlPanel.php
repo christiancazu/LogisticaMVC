@@ -1,4 +1,4 @@
-<div class="container-fluid tab-pane" id="controlpanel">
+<div class="container-fluid tab-pane active" id="controlpanel">
     <div class="row">
         <div class="col-sm-8 col-md-8 col-md-offset-2">
             <div class="controlpanel bg-blanco">                
