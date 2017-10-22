@@ -3,7 +3,6 @@ $(document).on("ready",main());
 /**
  * Función que se ejecuta al intentar loguear
  */
-
 function main(){
 
     $("#form-login").submit(function(event){
@@ -21,7 +20,6 @@ function main(){
             }
         });
     });
-    
     $("#salir").on("click",function(event){
         event.preventDefault();
         $.ajax({
@@ -32,11 +30,8 @@ function main(){
                 windows.location.href = "Inicio";
             }
         });
-});
-             
+    });
 }
-    
-
 
 /**
  * Función que anima cuando se cierra la alerta de error

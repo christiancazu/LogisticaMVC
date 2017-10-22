@@ -8,12 +8,14 @@ $(document).ready(function() {
             
     	if (!$group.data('validate')) {
 			state = $(this).val() ? true : false;
-		}else if ($group.data('validate') == "dosdigitos") {
+		}else if ($group.data('validate') == "undigito") {
+			state = /^[0-9]{1,1}$/.test($(this).val())
+        }else if ($group.data('validate') == "dosdigitos") {
 			state = /^[0-9]{2,2}$/.test($(this).val())
         }else if($group.data('validate') == 'uncaracter') {
 			state = /^[a-zA-Z]{1,1}$/.test($(this).val())
-		}else if($group.data('validate') == 'cincodigitos') {
-			state = /^[0-9]{5,5}$/.test($(this).val())
+		}else if($group.data('validate') == 'cuatrodigitos') {
+			state = /^[0-9]{4,4}$/.test($(this).val())
 		}else if ($group.data('validate') == "length") {
 			state = $(this).val().length == $group.data('length') ? true : false;
 		}else if ($group.data('validate') == "number") {

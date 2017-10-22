@@ -1,17 +1,16 @@
 <?php
 class MdlExpediente extends CI_Model {
     
-    private $CodExpe,$CodUsuReg,$MontoExpe,$DescExpe;
+    private $codexpe,$codusureg,$descexpe;
 
     function __construct() {
         parent::__construct();
-        $this->load->database();
+        $this -> load -> database();
     }
-    function MdlExpediente($codigo,$usuario,$monto,$descripcion) {
-        $this->CodExpe=$codigo;
-        $this->CodUsuReg=$usuario;
-        $this->MontoExpe=$monto;
-        $this->DescExpe=$descripcion;              
+    function MdlExpediente($codigo,$usuario,$descripcion) {
+        $this -> codexpe = $codigo;
+        $this -> codusureg = $usuario;
+        $this -> descexpe = $descripcion;              
     }
    /* function getCodExpe()   { return $this->CodExpe;    }
     function getCodUsuReg() { return $this->CodUsuReg;  }
@@ -32,7 +31,10 @@ class MdlExpediente extends CI_Model {
     }
     public function Registrar() {
 
-        $this->db->query("SELECT fn_RegistrarExpediente('".$this->CodExpe."',".$this->CodUsuReg.",".$this->MontoExpe.",'".$this->DescExpe."')");
+        $resultado = $this->db->query("CALL sp_RegistrarExpediente('".$this->codexpe."',".$this->codusureg.",'".$this->descexpe."')");
+        if ($resultado -> num_rows() > 0) return $resultado -> row();
+        else return false;
+       
         
         /*$this->db->query("insert into tbl_expediente (vchrCodExpe,intCodUsuReg,dblMontoExpe,ltxtDescExpe) values ("$vchrCodExpe.",'".$intCodUsuReg."','".$MontoExpe."','".$ltxtDescExpe."')");*/
         /*$this->db->query("CALL sp_RegistrarExpediente('".$a."',".$b.",".$c.",'".$d."')");*/

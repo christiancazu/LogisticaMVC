@@ -29,9 +29,9 @@
                         <button class="btn btn-primary btn-md btn-block" type="submit">Iniciar Sesión</button>
                     </div>                    
                     <div class="form-group">
-                        <div class="alert alert-danger alert-dismissable fade-in alert-login hidden" id="alert-error">
+                        <div class="alert alert-danger alert-dismissable fade-in alert-error hidden" id="alert-error">
                             <a href="#" class="close" id="alert-close">&times;</a>
-                            <strong>¡ Error !</strong>
+                            <strong> Error </strong> <i class="fa fa-times-circle fa-2x"></i>
                             <p>Usuario o Contraseña Incorrecto.</p>     
                         </div>
                     </div>

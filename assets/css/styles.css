@@ -1,50 +1,48 @@
 body {
-    background: #ccc;
+    background: #ddd;
     height: 100%;
     font-size: 16px;
     color: white;
 }
-
 html {
     height: 100%;
 }
-
+textarea {
+    resize:vertical;
+    min-height: 100px;
+}
+.alert strong {
+    font-size:22px;
+}
 /*******************
 ***** COLORES ******
 *******************/
-
 .bg-azul {
     background: #0080C0;
     border-color: #0080C0;
     border: 4px solid #0080C0;
 }
-
 .bg-blanco {
-    background-color: white;
-    color: #0080C0;
-    border: 4px solid #0080C0;
+    background-color:white;
+    color:#0080C0; 
+    border:4px solid #0080C0;
 }
-
 .bg-celeste {
-    background: #0099CA;
+    background: #0099CA;   
 }
-
 .text-blanco {
     color: white;
 }
-
 .text-azul {
     color: #0080C0;
 }
-
 /*******************
 *** INICIO/LOGIN ***
 *******************/
-
 .bg-essalud {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
     height: 100%;
     width: 100%;
     background: url(../images/bg/essalud.jpg) no-repeat center center fixed;
@@ -53,27 +51,24 @@ html {
     -o-background-size: cover;
     background-size: cover;
 }
-
-.form-login-logistica {
+.form-login-logistica {        
     padding: 12px;
     background-color: rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
-    border: 4px solid #0099CA;
-    margin-top: 60px;
+    border: 4px solid #0099CA;     
+    margin-top: 60px;    
     text-align: center;
 }
-
 .login-head {
-    margin-top: -20px;
+    margin-top: -20px;    
     font-size: 32px;
     font-weight: 600;
     letter-spacing: 2px;
-
+       
 }
-
 .img-login-logistica {
     width: 112px;
     height: 112px;
@@ -85,262 +80,241 @@ html {
     background: white;
     border: 4px solid #0099CA;
 }
-
 .form-login-logistica span {
     color: white;
     background: #0080C0;
-    font-size: 16px;
+    font-size: 16px;  
     border-top-left-radius: 10px !important;
-    border-bottom-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;     
 }
 
 .form-login-logistica input {
     border-top-right-radius: 10px !important;
-    border-bottom-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;     
 }
-
-.form-login-logistica input:focus {
-    border: 1px solid default;
-    font-size: 16px;
+.form-login-logistica input:focus{
+    border: 2px solid #0099CA; 
+    font-size: 18px;
 }
-
 .form-login-logistica button {
     font-size: 20px;
     border: 4px solid #0099CA;
     border-radius: 10px;
 }
-
 .form-login-logistica button:hover {
     color: #0099CA;
     border: 4px solid #0099CA;
     background: white;
-}
-
-.alert-login {
-    border-radius: 10px;
+}  
+.alert-error {   
+    border-radius: 10px;    
     border: 2px solid #AC3D4A;
     margin: 0 auto;
     text-align: left;
     opacity: 1;
-}
-
-.alert-login.animate {
-    opacity: 0;
     transition: opacity 2.5s linear;
 }
 
-.footer-login {
-    margin: 0 auto;
-    background: #0099CA;
-    font-weight: 600;
-    position: absolute;
+.alert-error.animate {
+    opacity: 0;
+    transition: opacity 2.5s linear;
 }
+.footer-login {
+    margin: 0 auto;        
+    background: #0099CA;    
+    font-weight: 600;   
+    position: absolute;   
 
+}
 @media screen and (max-width: 767px) {
-    .container-login {
-        width: 80%;
+    .container-login{
+        width: 80%;   
     }
 }
 
+.alert-correcto {
+    border-radius: 10px;
+    border: 2px solid green;
+    margin: 0 auto;
+    text-align: left;
+    opacity: 1;
+    transition: opacity 5s;
+}
+
+.alert-correcto.animate {
+    opacity: 0;
+    transition: opacity 3s;
+}
 /********************************
 ***** PANELUSUARIO/CABECERA *****
 ********************************/
-
 .navbar-panelusuario {
-    background: #0080C0;
-    border: 1px solid white;
-    font-weight: 600;
-}
-
+    background: #0080C0;    
+    border: 1px solid white; 
+    font-weight: 600;    
+}  
 .navbar-panelusuario .navbar-nav > li > a {
-    color: #fff;
+    color:#fff;
     font-weight: 600;
     font-size: 16px;
 }
-
-.navbar-panelusuario .navbar-nav > .active > a,
-.navbar-nav > .active > a:hover,
-.navbar-nav > .active > a:focus {
+.navbar-panelusuario .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
     color: #ffffff;
     background-color: transparent;
-}
-
-.navbar-panelusuario .navbar-nav > li > a:hover,
-.nav > li > a:focus {
+}      
+.navbar-panelusuario .navbar-nav > li > a:hover, .nav > li > a:focus {
     text-decoration: none;
     color: black;
     background-color: white;
-}
-
+}      
 .navbar-panelusuario .navbar-brand {
     font-size: 24px;
     color: white;
 }
-
 .navbar-panelusuario .navbar-toggle {
-    background-color: #ddd;
+    background-color:#ddd;
 }
-
 .img-cabecera {
-    height: 64px;
+    height: 64px;     
     margin-top: -10px;
 }
-
-.img-cabecera:hover {
-    transform: rotateY(360deg);
-    transition-duration: 4s;
-}
-
 /***********************************
 ***** PANELUSUARIO/MENULATERAL *****
 ***********************************/
-
 ul#tabs-lateral {
     position: fixed;
     margin: 0 auto;
-    margin-top: 90px;
+    margin-top : 90px;
     padding: 0px;
     top: 10px;
     left: -42px;
     list-style: none;
-    z-index: 9999;
+    z-index:9999;
 }
-
 ul#tabs-lateral li {
     width: 100px;
 }
-
 ul#tabs-lateral li a {
     display: block;
-    margin-left: 20px;
+    margin-left:20px;
     padding-left: 10px;
     padding-right: -10px;
     width: 176px;
-    height: 58px;
-    background-color: #0080C0;
-    background-position: center center;
+    height: 58px;   
+    background-color:#0080C0;    
+    background-position:center center;
     border: 2px solid white;
-    -moz-border-radius: 0px 10px 10px 0px;
+    -moz-border-radius:0px 10px 10px 0px;
     -webkit-border-bottom-right-radius: 10px;
     -webkit-border-top-right-radius: 10px;
     -khtml-border-bottom-right-radius: 10px;
     -khtml-border-top-right-radius: 10px;
     font-size: 19px;
-    color: white;
+    color:white;  
     text-align: left;
     text-decoration: none;
     font-weight: 700;
 }
-
 ul#tabs-lateral li a:hover {
-    background-color: white;
-    color: #0080C0;
-    border: 2px solid #0080C0;
+    background-color:white;
+    color:#0080C0; 
+    border:2px solid #0080C0;
 }
-
-.img-menulateral {
+.img-menulateral {    
     height: 42px;
     padding-left: 16px;
     margin-top: 6px;
 }
-
 .tab-content {
-    /*background: green; */
+    /*background: green; */   
 }
-
-.panel-tab {
-    /*background: red;   */
+.panel-tab {   
+    /*background: red;   */ 
 }
-
-.tab-pane {
+.tab-pane{    
     /*background: black;*/
 }
+#registrar,#consultar,#enviar,#recibir,#reporte {
 
+}
 /*****************************************
 ***** PANELUSUARIO/PANELES/REGISTRAR *****
 *****************************************/
-
-.form-horizontal {
+.form-horizontal{    
     padding-left: 24px;
     padding-right: 24px;
     font-size: 16px;
     color: #0080C0;
 }
-
-.panel {
-    width: 310px;
+.panel-registrar{
+    width:74%;
     border-radius: 10px;
     margin: 0 auto;
     margin-top: 70px;
     margin-bottom: 32px;
 }
-
-.form-horizontal,
-.form-inline {
-    width: auto;
+.form-horizontal,.form-inline {    
+    width:auto;
     margin: 0 auto;
     border-radius: 5px;
 }
-
 #input-registrar {
     border-radius: 5px;
     font-size: 16px;
-    height: 24px;
+    height: 24px; 
     border: 1px solid #aaa;
+    
+}
+.form-inline  {  
+    text-align: center;   
 }
 
-.form-inline {
-    margin: 0 auto;
+input.input-codigo {
+    font-size: 24px !important;
+    height: 32px !important;  
     text-align: center;
 }
-
-.input-control input {
-    font-size: 16px;
-    height: 16px;
-    border-radius: 20px;
+@media (max-width: 768px) {
+    .form-inline{
+    display:inline-flex;
+        margin-left: 24px;
+    }
 }
-
 /*#border-round,.input-group input {
 border-radius: 20px;
 }*/
-
-button:disabled {
+button:disabled{
     background: darkslategray;
-    color: darkseagreen;
+    color:darkseagreen;
 }
-
-.input-control::placeholder,
-#input-registrar::placeholder,
-#system-search::placeholder {
-    opacity: 0.7;
-    font-size: 16px;
+.input-control::placeholder,#input-registrar::placeholder,#system-search::placeholder  {
+    opacity: 0.7; 
+    font-size: 16px;    
     padding: 0px;
     padding-left: -10px;
     margin-left: 10px;
 
 }
-
 /*.input-group-addon input{    
 border-radius: 20px;
 font-size: 16px;
 background: red:
 
 }*/
-
 .input-group-addon.primary {
     color: rgb(255, 255, 255);
     background-color: rgb(50, 118, 177);
     border-color: rgb(40, 94, 142);
     padding: 2px;
 }
-
 .input-group-addon.success {
-    color: rgb(0, 0, 0);
-    background-color: rgb(76, 174, 76);
-    border-color: rgb(76, 174, 76);
-    padding: 4px;
+    
+    background-color: rgba(76, 174, 76,1);
+   
+    border-color: rgba(76, 174, 76,1); 
+     border: 2px solid rgba(76, 174, 76,0.5);
+  
 }
-
 .input-group-addon.info {
     color: rgb(255, 255, 255);
     background-color: rgb(57, 179, 215);
@@ -348,29 +322,26 @@ background: red:
     border-style: solid;
     padding: 2px;
 }
-
 .input-group-addon.warning {
     color: rgb(255, 255, 255);
     background-color: rgb(240, 173, 78);
     border-color: rgb(238, 162, 54);
 }
-
 .input-group-addon.danger {
     color: rgb(0, 0, 0);
     background-color: none;
-    border-color: none;
+    border-color: none);
     border-style: solid;
 
 }
-
 .input-group-addon.default {
-    color: none;
-    background-color: none;
-    border-color: none;
-    border-radius: 5px;
-    padding: 1px;
-}
+    
+    width: 100%;
+    border-color: transparent;   
+    border-radius: 6px;    
+    padding: 0px;
 
+}
 #validate-text {
     border-radius: 5px;
     height: 24px;
@@ -378,31 +349,40 @@ background: red:
 
     font-size: 16px;
 
-}
-
+} 
 #validate-text::placeholder {
-    padding: 0;
+    padding:0;
     margin: 0 auto;
     text-align: center;
     font-size: 14px;
+    opacity: 0.75;
+}
 
+.alert-registro-correcto{   
+    border-radius: 10px;    
+    border: 2px solid green;
+    margin: 0 auto;
+    text-align: left;
+    opacity: 1;
+}
+
+.alert-registro-correcto.animate {
+    opacity: 0;
+    transition: opacity 2.5s linear;
 }
 
 /*****************************************
 *****|PANELUSUARIO/PANELES/CONSULTAR|*****
 *****************************************/
-
 .form-control input {
     border-radius: 5px;
     font-size: 18px;
 }
-
 #system-search {
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 18px;  
     height: 24px;
 }
-
 #table-consultar {
     border-collapse: collapse;
     width: 100%;
@@ -422,39 +402,34 @@ background: red:
         margin-left: 24px;
     }
 }
-
 .centered {
     text-align: center;
 }
-
 .bordered tr {
 
     background: white;
 
 }
-
 .striped tr:nth-child(even) {
+
     /*background: #ccc;*/
     background: white;
-}
 
-#table-consultar td,
-#table-consultar th {
-    border: 1px solid #ccc;
 
 }
+#table-consultar td, #table-consultar th {    
+    border:1px solid #ccc;
 
+}
 #table-consultar th {
     text-transform: uppercase;
     background: #0080C0;
     color: #fff;
-    border: 1px solid white;
+    border:1px solid white;
     height: 18px;
     text-align: center;
 }
-
-#table-consultar thead,
-#table-consultar tbody {
+#table-consultar thead, #table-consultar tbody {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -462,16 +437,12 @@ background: red:
     -ms-flex: auto;
     flex: auto;
 }
-
 @media all and (min-width: 628px) {
-    #table-consultar thead,
-    #table-consultar tbody {
+    #table-consultar thead, #table-consultar tbody {
         display: table-header-group;
     }
 }
-
-#table-consultar thead tr,
-#table-consultar tbody tr {
+#table-consultar thead tr, #table-consultar tbody tr {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -483,19 +454,13 @@ background: red:
     -ms-flex: auto;
     flex: auto;
 }
-
 @media all and (min-width: 628px) {
-    #table-consultar thead tr,
-    #table-consultar tbody tr {
+    #table-consultar thead tr, #table-consultar tbody tr {
         display: table-row;
         width: 100%;
     }
 }
-
-#table-consultar thead tr td,
-#table-consultar thead tr th,
-#table-consultar tbody tr td,
-#table-consultar tbody tr th {
+#table-consultar thead tr td, #table-consultar thead tr th, #table-consultar tbody tr td, #table-consultar tbody tr th {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -503,41 +468,31 @@ background: red:
     -ms-flex: auto;
     flex: auto;
 }
-
 @media all and (min-width: 628px) {
-    #table-consultar thead tr td,
-    #table-consultar thead tr th,
-    #table-consultar tbody tr td,
-    table tbody tr th {
+    #table-consultar thead tr td, #table-consultar thead tr th, #table-consultar tbody tr td, table tbody tr th {
         display: table-cell;
     }
 }
-
 #table-consultar thead {
     max-width: 7rem;
     min-width: 7rem;
 }
-
 #table-consultar tbody {
     overflow-x: auto;
 }
-
 #table-consultar tbody td {
     min-width: 7rem;
 }
-
-.modal-consultar {
+.modal-consultar{
     margin-top: 60px;
     border: 4px solid #0080C0;
     text-align: center;
 
 }
-
 .modal-backdrop.in {
     filter: alpha(opacity=70);
     opacity: .7;
 }
-
 .close {
     position: absolute;
     top: 10px;
@@ -548,49 +503,44 @@ background: red:
     transition: 0.5s;
     opacity: 1;
 }
-
-.modal-title {
+.modal-title{
     color: #0080C0;
     font-size: 24px;
     font-weight: 600;
 }
-
 /*****************************************
 *****|PANELUSUARIO/PANELES/ENVIAR|*****
 *****************************************/
-
 .fieldset-enviar {
     margin-bottom: -20px;
-    border: 4px solid rgba(0, 128, 192, 0.1);
+    border:4px solid rgba(0, 128, 192, 0.1);
 }
 
 .panel-fieldset {
     border: 1px solid #ddd !important;
     margin: 0;
     min-width: 0;
-    padding: 5px;
+    padding: 5px;       
     position: relative;
-    border-radius: 4px;
-    background-color: #eee;
+    border-radius:4px;
+    background-color:#eee;
     border: 4px solid black;
     width: 240px;
     margin-top: 12px;
     margin-left: -12px;
 
 }
-
 .panel-fieldset legend {
     margin: 0 auto;
-    margin-left: -6px;
-    width: 60%;
+    margin-left: -6px;        
+    width: 60%; 
     border: 1px solid rgba(0, 128, 192, 1);
-    border-radius: 4px;
-    padding: 5px 5px 5px 10px;
+    border-radius: 4px; 
+    padding: 5px 5px 5px 10px; 
     background-color: #ffffff;
     font-size: 16px;
     font-weight: 600;
 }
-
 /*****************************************
 *****|PANELUSUARIO/PANELES/CONTROLPANEL|*****
 *****************************************/
@@ -598,88 +548,53 @@ background: red:
 .pricing-wrapper .pricing-table {
     border: 4px solid #0080C0;
     padding: 20px;
-    width: 200px;
+    width: 200px;    
     margin-top: 30px;
     margin-bottom: 30px;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 20px; 
 }
-
-/*.pricing-wrapper .popular{
+.pricing-wrapper .popular{
     color: black;
-}*/
-
+}
 .pricing-wrapper hr {
     border-top: 1px solid white!important;
 
 }
-
-.pricing-wrapper .pricing-table .price-wrap {
+.pricing-wrapper .pricing-table .price-wrap{
 
     background-color: #0080C0;
     padding: 20px 0px 20px 0px;
-    width: 120px;
+    width:120px;
     margin: 0 auto;
     text-align: center;
     border-radius: 20px;
     margin-bottom: 10px;
-
 }
-
-.pricing-wrapper .type {
+.pricing-wrapper .type{    
     font-weight: 900;
     font-size: 14px;
-    color: #0080C0;
+    color: #0080C0; 
 }
-
 .pricing-wrapper .pricing-table .price {
     font-weight: 900;
     font-size: 10px;
+
 }
-
-.pricing-table {
-    transform: scale(1);
-    transition-duration: 0.75s;
-}
-
-.pricing-table:hover {
-    border: 4px solid black;
-    background: #0080C0;
-    transform: scale(1.1);
-    transition-duration: 0.75s;
-}
-
-.pricing-table:hover .type {
-
-    color: white;
-}
-
-.pricing-table:hover .price-wrap {
-
-    background: white;
-}
-
 .img-controlpanel {
     height: 60px;
     padding-left: 0px;
-    margin: 0 auto;
+    margin:0 auto;    
 }
-
 #controlpanel {
-    margin: 0 auto;
-    margin-top: 70px;
-    border-radius: 20px;
+    margin: 0 auto;    
+    margin-top: 70px;    
+    border-radius: 20px; 
 }
-
 .panel-head h4 {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 600;   
 }
-
-.controlpanel {
-    border-radius: 10px;
-}
-
-#controlpanel a {
-    text-decoration: none;
+.controlpanel{
+    border-radius: 10px; 
 }
