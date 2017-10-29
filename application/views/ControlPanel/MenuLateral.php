@@ -1,7 +1,7 @@
 <div class="container-fluid panel-tab" id="content">
     <ul id="tabs-lateral" data-tabs="tabs">
 
-        <li><a href="#controlpanel" class="xxx" onclick="Actualizar();" data-toggle="tab"><span>Panel &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img class="img-menulateral" src="<?php echo IMG?>iconos/paneldecontrol.png" alt=""></span></a></li>
+        <li><a href="#controlpanel" class="xxx" onclick="location.reload();" data-toggle="tab"><span>Panel &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img class="img-menulateral" src="<?php echo IMG?>iconos/paneldecontrol.png" alt=""></span></a></li>
 
         <li><a href="#registrar" data-toggle="tab"><span>Registrar &nbsp;&nbsp;<img class="img-menulateral" src="<?php echo IMG?>iconos/registrar2.png" alt=""></span></a></li>
 
@@ -23,7 +23,6 @@
         <?= $Consultar ?>
         <?= $Enviar ?>
         <?= $Recibir ?>
-        <?= $Reporte ?>
-        <?= $Salir ?>        
+        <?= $Reporte ?>      
     </div>
 </div>

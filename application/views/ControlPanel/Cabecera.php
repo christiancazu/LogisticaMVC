@@ -31,7 +31,7 @@
                            
                             <!--Muestra El Nombre de sesión Simplificado--> 
                             <?= $this->session->userdata("nomyape") ?>
-                           
+                            
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#"><i class="fa fa-user fa-border"></i>Ver Perfil</a></li>

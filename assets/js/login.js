@@ -1,9 +1,9 @@
 /*Evento on activa la función al cargar la página*/
-$(document).on("ready",main());
+$(document).on("ready",login());
 /**
  * Función que se ejecuta al intentar loguear
  */
-function main(){
+function login(){
 
     $("#form-login").submit(function(event){
         event.preventDefault();
@@ -13,10 +13,19 @@ function main(){
             data:$(this).serialize(),
             success:function(resultado){
                 if(resultado==="error"){
-                    $("#alert-error").removeClass("hidden");
-                    $("#alert-error").removeClass("animate");
+
+                    htmlbuttonx = "";
+                    htmlbuttonx += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
+                    htmlbuttonx += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> Usuario o Contraseña Incorrecto.</div>';
+                    $("#mensaje-alert-login").html(htmlbuttonx); 
+                    $(".borrar-button").toggleClass("desaparecer");
+                    setTimeout(function(){ $("#alert-error").toggleClass("aparecer"); }, 1);
+                    setTimeout(function(){ $("#alert-error").removeClass("aparecer"); }, 3000);
+                    setTimeout(function(){ $(".borrar-button").toggleClass("desaparecer"); }, 3250);
+                    setTimeout(function(){ $("#alert-error").css("display","none"); }, 3250); 
+
                 }
-                else window.location.href = "Controlpanel";
+                else  window.location.href = "ControlPanel";
             }
         });
     });
@@ -42,7 +51,3 @@ $(document).ready(function(){
         setTimeout(function(){ $("#alert-error").addClass("hidden"); }, 1500);
     });
 });
-
-/**Funcion Para cerrar sesion
-*/
-
