@@ -12,9 +12,10 @@ function RegistrarExpediente(){
         $.ajax({
             url:$(this).attr("action"),
             type:$(this).attr("method"),
-            data:$(this).serialize(),
+            data:$(this).serialize(),            
             success:function(resultado){
-                if(resultado==="no registrado"){
+                var registros = eval(resultado);
+                if(registros[0]['result']==0){
 
                     htmlbutton = "";
                     htmlbutton += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
@@ -50,7 +51,6 @@ function ModificarExpediente(){
             data:$(this).serialize(),
             success:function(resultado){
                 if(resultado==="no modificado"){
-
                     htmlbuttonx = "";
                     htmlbuttonx += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
                     htmlbuttonx += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> El Expediente no está Registrado.</div>';                  

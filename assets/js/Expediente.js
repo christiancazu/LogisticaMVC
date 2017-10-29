@@ -19,22 +19,21 @@ function ComprobarExpediente () {
             codexp +=  $("#form-regexp [name='cod3']").val();
             codexp +=  $("#form-regexp [name='cod4']").val();
             codexp +=  $("#form-regexp [name='cod5']").val();
-            /*var codigoconsulta = "";
-            codigoconsulta += codexp1+codexp2+codexp3+codexp4+codexp5;*/            
             $.ajax({
                 type: "POST",
                 url: "Expediente/ConsultarParaRegistrar",
                 data: { buscar: codexp },
-                success: function (resultado) {           
-                    if(resultado==="no existe") {
+                success: function (resultado) {  
+                    var registros = eval(resultado);                   
+                    if (registros[0]['result']==1)  {
                         mensajeexiste = "";
-                        mensajeexiste += "<p class='text-center mensaje-registro-válido' style='color:red; font-weight:bold;'>El expediente ya esta registrado o es inválido</p>";
+                        mensajeexiste += "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'>El expediente ya está registrado o es inválido</p>";
                     }
                     else {
                         mensajeexiste = "";
                         mensajeexiste += "<p class='text-center mensaje-registro-valido' style='color:green; font-weight:bold;'>El expediente es válido para registro</p>";
                     }
-                    $("#comprobacion-expe").html(mensajeexiste);
+                    $("#comprobacion-expe").html(mensajeexiste); 
                 }
             });
         }
@@ -43,6 +42,7 @@ function ComprobarExpediente () {
             mensajeexiste += "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'> &nbsp;</p>";
             $("#comprobacion-expe").html(mensajeexiste);
         }
+
     });
 }
 /**
@@ -65,44 +65,72 @@ function ObtenerDatosParaModificar () {
             codexp +=  $("#form-modiexp [name='cod3']").val();
             codexp +=  $("#form-modiexp [name='cod4']").val();
             codexp +=  $("#form-modiexp [name='cod5']").val();
-           
+
             /*var codigoconsulta = "";
             codigoconsulta += codexp1+codexp2+codexp3+codexp4+codexp5;*/            
             $.ajax({
                 type: "POST",
-                url: "Expediente/ObtenerDatosParaModificar",
+                url: "Expediente/ConsultarParaRegistrar",
                 data: { buscar: codexp },
                 success: function (resultado) {
-
                     var registros = eval(resultado);
                     //alert(resultado.length+" "+registros[0]["descripcion"]);
-                    if(registros.length>0) {
-                        $("#text-area-desc").val(registros[0]["descripcion"]);
-                        $("#text-area-obse").val(registros[0]["observaciones"]);
+                    if(registros[0]['result']==1) {
+                       // alert("estoy"); 
+                        $.ajax({
+                            type: "POST",
+                            url: "Expediente/ObtenerDatosParaModificar",
+                            data: { buscar: codexp },
+                            success: function (resultado) {
+                                var datosparamodificar = eval(resultado);
+                                $("#text-area-desc").val(datosparamodificar[0]["descripcion"]);
+                                $("#text-area-obse").val(datosparamodificar[0]["observaciones"]);
+                                mensajeexiste = "";
+                                mensajeexiste += "<p class='text-center mensaje-registro-valido' style='color:green; font-weight:bold;'>El expediente es válido para modificar</p>";
+                                $("#comprobacion-expe-modi").html(mensajeexiste);       
+                            }
+                        });
+                        
+                        
+
+
                     }
-                    
-
-
-
-
+                    else {
+                        $("#text-area-desc").val("");
+                        $("#text-area-obse").val("");
+                        mensajeexiste = "";
+                        mensajeexiste += "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'>El expediente no existe, inválido para modificar</p>";
+                        $("#comprobacion-expe-modi").html(mensajeexiste);
+                    }
                     /*mensajeexiste = "";
                         mensajeexiste += "<p class='text-center mensaje-registro-válido' style='color:red; font-weight:bold;'>El expediente ya esta registrado o es inválido</p>";*/
-
-
                     /*$("#comprobacion-expe").html(mensajeexiste);*/
                 }
             });
         }
-        /*else {
+        else {
 
             mensajeexiste = "";
             mensajeexiste += "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'> &nbsp;</p>";
-            $("#comprobacion-expe").html(mensajeexiste);
-        }*/
+            $("#comprobacion-expe-modi").html(mensajeexiste);
+        }
 
     });
 }
-
+/*function ComprobarExistenciaExpediente (codigo) {
+    $.ajax({
+        type: "POST",
+        url: "Expediente/ConsultarParaRegistrar",
+        data: { buscar: codigo },
+        success: function (resultado) {  
+            var registros = eval(resultado);
+            var result = 'si';
+            if (registros[0]['result']==0)  {
+                return false;
+            }
+        }
+    });
+}*/
 /**
  * Función invocada por la vista Consultar
  */

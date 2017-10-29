@@ -50,8 +50,7 @@ class MdlExpediente extends CI_Model {
      */
     public function Registrar() {
         $resultado = $this->db->query("CALL sp_RegistrarExpediente('".$this->codexpe."',".$this->codusureg.",'".$this->descexpe."','".$this->obseexpe."')");
-        if ($resultado -> num_rows() > 0) return $resultado -> row();
-        else return false;
+        return $resultado -> result();
     }
     /**
      * Función para Modificar Expediente invocado por el contrlador Usuario 
@@ -96,8 +95,7 @@ class MdlExpediente extends CI_Model {
      */
     public function ConsultarParaRegistrar($codigoexpe) {
         $resultado = $this->db->query("CALL sp_ConsultarParaRegistrar('".$codigoexpe."')");
-        if ($resultado -> num_rows() > 0) return $resultado -> row();
-        else return false;
+        return $resultado -> result();
     }
     /**
      * Función para ObtenerDatosParaModificar si el expediente es valido para modicacion

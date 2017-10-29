@@ -25,10 +25,7 @@ class Usuario extends CI_Controller {
         $observaciones    = $this-> input -> post ('observaciones');
         $this -> objExpediente -> MdlExpedienteRegistrar($codigoexpe, $codigousureg, $descripcion, $observaciones);    
         $resultado = $this -> objExpediente -> Registrar();       
-        if ($resultado -> errno) {
-           echo "no registrado";          
-        }
-        else echo "registrado";
+        echo json_encode($resultado);
     }
      /**
      * Función de modifación de Expediente

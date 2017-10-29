@@ -32,10 +32,7 @@ class Expediente extends CI_Controller {
     public function ConsultarParaRegistrar() {
         $codigoconsulta = $this -> input -> post("buscar");
         $resultado = $this -> objExpediente -> ConsultarParaRegistrar($codigoconsulta);
-        if ($resultado -> errno) {
-           echo "no existe";          
-        }
-        else echo "existe";
+        echo json_encode($resultado); 
     }
     public function ObtenerDatosParaModificar() {
         $codigoconsulta = $this -> input -> post("buscar");
