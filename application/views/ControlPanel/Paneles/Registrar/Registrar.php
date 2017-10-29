@@ -1,4 +1,4 @@
-<div class="container tab-pane fade in" id="registrar">
+<div class="container tab-pane fade in active" id="registrar">
     <div class="row">
         <div id="tabs-registrar">
             <ul class="nav nav-pills">               
@@ -87,6 +87,9 @@
                                     <div class="input-group" data-validate="undigito">
                                         <span class="input-group-addon default"><input type="text" class="input-codigo" name="cod5" id="validate-text" placeholder="0-9" maxlength="1" required style="max-width: 46px;"></span>
                                     </div>
+                                </div>
+                                <div id="comprobacion-expe-modi"><br>
+                                  <!--  muestra mensaje si es valido el expediente para registro-->
                                 </div>
                                 <div class="form-horizontal form-group">             
                                     <label class="text-verde">Nuevo código de Expediente :</label>

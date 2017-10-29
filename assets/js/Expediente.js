@@ -28,7 +28,7 @@ function ComprobarExpediente () {
                 success: function (resultado) {           
                     if(resultado==="no existe") {
                         mensajeexiste = "";
-                        mensajeexiste += "<p class='text-center mensaje-registro-válido' style='color:red; font-weight:bold;'>El expediente ya esta registrado o es inválido</p>";
+                        mensajeexiste += "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'>El expediente ya esta registrado o es inválido</p>";
                     }
                     else {
                         mensajeexiste = "";
@@ -79,9 +79,17 @@ function ObtenerDatosParaModificar () {
                     if(registros.length>0) {
                         $("#text-area-desc").val(registros[0]["descripcion"]);
                         $("#text-area-obse").val(registros[0]["observaciones"]);
+                        mensajeexiste = "";
+                        mensajeexiste += "<p class='text-center mensaje-registro-valido' style='color:green; font-weight:bold;'>El expediente es válido para modificar</p>";
                     }
+                    else {
+                        $("#text-area-desc").val("");
+                        $("#text-area-obse").val("");
+                        mensajeexiste = "";
+                        mensajeexiste += "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'>El expediente no existe, inválido para registro</p>";
+                    }
+                    $("#comprobacion-expe-modi").html(mensajeexiste);
                     
-
 
 
 
@@ -93,12 +101,12 @@ function ObtenerDatosParaModificar () {
                 }
             });
         }
-        /*else {
+        else {
 
             mensajeexiste = "";
             mensajeexiste += "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'> &nbsp;</p>";
-            $("#comprobacion-expe").html(mensajeexiste);
-        }*/
+            $("#comprobacion-expe-modi").html(mensajeexiste);
+        }
 
     });
 }
