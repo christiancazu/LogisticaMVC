@@ -72,5 +72,20 @@ class Usuario extends CI_Controller {
         }
         else echo "enviado";
     }  
+    public function ModificarEnvioExpediente() {
+        $codigoexpe       = $this-> input -> post ('cod1').
+                            $this-> input -> post ('cod2').
+                            strtoupper($this-> input -> post ('cod3')).
+                            $this-> input -> post ('cod4').
+                            $this-> input -> post ('cod5');
+        $codigousuenvio   = $this-> session->userdata("codigo");
+        $nombresrespo     = $this-> input -> post ('nombresrespo');
+        $apellidosrespo   = $this-> input -> post ('apellidosrespo');
+        $arearespo        = $this-> input -> post ('arearespo'); 
+        $observaciones    = $this-> input -> post ('observaciones'); 
+        $fueradeareasiono = $this-> input -> post ('fueradeareasiono');
+        $resultado = $this-> objExpediente -> ModificarEnvioExpediente($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones, $fueradeareasiono);
+        echo json_encode($resultado);
+    }
     
 }

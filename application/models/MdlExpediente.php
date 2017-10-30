@@ -106,5 +106,27 @@ class MdlExpediente extends CI_Model {
         $resultado = $this->db->query("CALL sp_ObtenerDatosParaModificar('".$codigoexpe."')");
         return $resultado -> result();
     }
+    /**
+     * Función para consultar si el expediente es valido para Envio
+     * @param  [[Type]] $codigoexpe [[Description]]
+     * @return [[Type]] [[Description]]
+     */
+    public function ConsultarParaEnviar($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_ConsultarParaEnviar('".$codigoexpe."')");
+        return $resultado -> result();
+    }
+    /**
+     * Función para ObtenerDatosParaModificarEnvio si el expediente es valido para modicacion de envio
+     * @param  [[Type]] $codigoexpe [[Description]]
+     * @return [[Type]] [[Description]]
+     */
+    public function ObtenerDatosParaModificarEnvio($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_ObtenerDatosParaModificarEnvio('".$codigoexpe."')");
+        return $resultado -> result();
+    }
+    public function ModificarEnvioExpediente($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones, $fueradeareasiono) {
+        $resultado = $this->db->query("CALL sp_ModificarEnvioExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."','".$arearespo."','".$observaciones."',".$fueradeareasiono.")"); 
+        return $resultado -> result();
+    }
     
 }

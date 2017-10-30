@@ -1,4 +1,4 @@
-<div class="container tab-pane fade in" id="controlpanel">
+<div class="container tab-pane fade in active" id="controlpanel">
     <div class="row">
         <div class="col-sm-8 col-md-offset-2">
             <div class="controlpanel-modulos">                

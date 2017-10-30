@@ -1,7 +1,9 @@
 /*Evento on activa la función al cargar la página*/
 $(document).on("ready",RegistrarExpediente());
 $(document).on("ready",ModificarExpediente());
+$(document).on("ready",ModificarEnvioExpediente());
 $(document).on("ready",EnviarExpediente());
+$(document).on("ready",RecepcionarExpediente()); 
 /**
  * Función para validar registro de expediente
  */
@@ -53,7 +55,7 @@ function ModificarExpediente(){
                 if(resultado==="no modificado"){
                     htmlbuttonx = "";
                     htmlbuttonx += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
-                    htmlbuttonx += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> El Expediente no está Registrado.</div>';                  
+                    htmlbuttonx += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> Uno de los expedientes, no es inválido para modificar.</div>';                  
                 }
                 else {
 
@@ -78,7 +80,7 @@ function ModificarExpediente(){
  */
 function EnviarExpediente(){
 
-    $("#form-enviarexp").submit(function(event){
+    $("#form-envio").submit(function(event){
         event.preventDefault();
         $.ajax({
             url:$(this).attr("action"),
@@ -86,13 +88,13 @@ function EnviarExpediente(){
             data:$(this).serialize(),
             success:function(resultado){
                 if(resultado==="no enviado"){
-                    alert("no");
+                    //alert("no");
                     htmlbuttonenvio = "";
                     htmlbuttonenvio += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
                     htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> El Expediente no puede ser enviado.</div>'; 
                 }
                 else {
-                    alert("si");
+                    //alert("si");
                     htmlbuttonenvio = "";
                     htmlbuttonenvio += '<div class="alert alert-success mensaje-alert-correcto" id="alert-error">';
                     htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> Correcto ! </strong></i> El Expediente ha sido Enviado.</div>'; 
@@ -108,16 +110,88 @@ function EnviarExpediente(){
         });
     });             
 }
+
+function ModificarEnvioExpediente(){
+
+    $("#form-envio-mod").submit(function(event){
+        event.preventDefault();
+        $.ajax({
+            url:$(this).attr("action"),
+            type:$(this).attr("method"),
+            data:$(this).serialize(),
+            success:function(resultado){
+                var registros = eval(resultado);
+                if(registros[0]['result']==0){
+                    //alert("no");
+                    htmlbuttonenvio = "";
+                    htmlbuttonenvio += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
+                    htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> El Expediente no puede ser modificado.</div>'; 
+                }
+                else {
+                    //alert("si");
+                    htmlbuttonenvio = "";
+                    htmlbuttonenvio += '<div class="alert alert-success mensaje-alert-correcto" id="alert-error">';
+                    htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> Correcto ! </strong></i> El Expediente ha sido modificado.</div>'; 
+                    LimpiarFormulario();
+                }
+                $("#form-envio-mod #mensaje-alert").html(htmlbuttonenvio); 
+                $(".borrar-button").toggleClass("desaparecer");
+                setTimeout(function(){ $("#alert-error").toggleClass("aparecer"); }, 1);
+                setTimeout(function(){ $("#alert-error").removeClass("aparecer"); }, 3000);
+                setTimeout(function(){ $(".borrar-button").toggleClass("desaparecer"); }, 3250);
+                setTimeout(function(){ $("#alert-error").css("display","none"); }, 3250);               
+            }
+        });
+    });             
+}
+
+function RecepcionarExpediente(){
+
+    $("#form-recepcionarexp").submit(function(event){
+        event.preventDefault();
+        $.ajax({
+            url:$(this).attr("action"),
+            type:$(this).attr("method"),
+            data:$(this).serialize(),
+            success:function(resultado){
+                if(resultado==="no enviado"){
+                    alert("no");
+                    htmlbuttonenvio = "";
+                    htmlbuttonenvio += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
+                    htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> El Expediente no puede ser recepcionado.</div>'; 
+                }
+                else {
+                    alert("si");
+                    htmlbuttonenvio = "";
+                    htmlbuttonenvio += '<div class="alert alert-success mensaje-alert-correcto" id="alert-error">';
+                    htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> Correcto ! </strong></i> El Expediente ha sido recepcionado.</div>'; 
+                    LimpiarFormulario();
+                }
+                $("#mensaje-alert-envio").html(htmlbuttonenvio); 
+                $(".borrar-button").toggleClass("desaparecer");
+                setTimeout(function(){ $("#alert-error").toggleClass("aparecer"); }, 1);
+                setTimeout(function(){ $("#alert-error").removeClass("aparecer"); }, 3000);
+                setTimeout(function(){ $(".borrar-button").toggleClass("desaparecer"); }, 3250);
+                setTimeout(function(){ $("#alert-error").css("display","none"); }, 3250);               
+            }
+        });
+    });             
+}
+
+
 function LimpiarFormulario() {
     mensajeexiste = "";
     mensajeexiste += "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'>&nbsp;</p>";
     $("#comprobacion-expe").html(mensajeexiste);
     $("#comprobacion-expe").html(mensajeexiste);
+    $("#comprobacion-expe-enviar").html(" ");
+    $("#form-envio-mod #msg-existe").html(" ");
     $(".btn-azul").attr("disabled", true);
     $(".btn-verde").attr("disabled", true);
     $("#form-regexp").trigger("reset");
     $("#form-modiexp").trigger("reset");
-    $("#form-enviarexp").trigger("reset");
+    $("#form-envio").trigger("reset");
+    $("#form-envio-mod").trigger("reset");
     $( ".input-group-addon" ).removeClass("success");
     $( '.anho' ).addClass("success");
 }

@@ -1,4 +1,4 @@
-<div class="container tab-pane fade in active" id="registrar">
+<div class="container tab-pane fade in" id="registrar">
     <div class="row">
         <div id="tabs-registrar">
             <ul class="nav nav-pills">               
@@ -21,7 +21,7 @@
                                 <div class="form-horizontal form-group">           
                                     <label class="text-azul">Código de Expediente:</label>
                                 </div>
-                                <div class="form-inline form-codigo">
+                                <div class="form-inline">
                                     <div class="input-group" data-validate="dosdigitos">
                                         <span class="input-group-addon default"><input type="text" class="input-codigo" name="cod1" id="validate-text" placeholder="0-9"  maxlength="2" required style="max-width: 46px;"></span>
                                     </div>
@@ -53,7 +53,7 @@
                                     <button class="btn btn-md btn-primary btn-block borrar-button btn-azul" type="submit" disabled>
                                         <strong>Registrar</strong></button>
                                     <div id="mensaje-alert-reg">
-                                        <!--Contenido de la respuesta de Registro de expediente enviado desde Usuario,js-->
+                                        <!--Contenido de la respuesta de Registro de expediente enviado desde Usuario.js-->
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                                 <div class="form-horizontal form-group">             
                                     <label class="text-verde">Nuevo código de Expediente :</label>
                                 </div>
-                                <div class="form-inline form-codigo2">
+                                <div class="form-inline form-codigo-reg-mod">
                                     <div class="input-group" data-validate="dosdigitos">
                                         <span class="input-group-addon default"><input type="text" class="input-codigo" name="cod1-new" id="validate-text" placeholder="0-9"  maxlength="2" required style="max-width: 46px;"></span>
                                     </div>
