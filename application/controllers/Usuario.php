@@ -52,7 +52,7 @@ class Usuario extends CI_Controller {
         else echo "modificado";
     }
     /**
-     * Función para Mostrar de Expediente
+     * Función para Enviar de Expediente
      */
     public function EnviarExpediente() {
         $codigoexpe       = $this-> input -> post ('cod1').
@@ -72,6 +72,9 @@ class Usuario extends CI_Controller {
         }
         else echo "enviado";
     }  
+    /**
+     * Función para modificar los datos de envio del expediente
+     */
     public function ModificarEnvioExpediente() {
         $codigoexpe       = $this-> input -> post ('cod1').
                             $this-> input -> post ('cod2').
@@ -87,5 +90,38 @@ class Usuario extends CI_Controller {
         $resultado = $this-> objExpediente -> ModificarEnvioExpediente($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones, $fueradeareasiono);
         echo json_encode($resultado);
     }
-    
+    /**
+     * Función para Recibir de Expediente
+     */
+    public function RecibirExpediente() {
+        $codigoexpe       = $this-> input -> post ('cod1').
+                            $this-> input -> post ('cod2').
+                            strtoupper($this-> input -> post ('cod3')).
+                            $this-> input -> post ('cod4').
+                            $this-> input -> post ('cod5');
+        $codigousuenvio   = $this-> session->userdata("codigo");
+        $nombresrespo     = $this-> input -> post ('nombresrespo');
+        $apellidosrespo   = $this-> input -> post ('apellidosrespo');
+        $arearespo        = $this-> input -> post ('arearespo'); 
+        $observaciones    = $this-> input -> post ('observaciones'); 
+        $resultado = $this-> objExpediente -> Recibir($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones);
+        if ($resultado -> errno) {
+           echo "no recibido";          
+        }
+        else echo "recibido";
+    }
+     public function ModificarRecepcionExpediente() {
+        $codigoexpe       = $this-> input -> post ('cod1').
+                            $this-> input -> post ('cod2').
+                            strtoupper($this-> input -> post ('cod3')).
+                            $this-> input -> post ('cod4').
+                            $this-> input -> post ('cod5');
+        $codigousuenvio   = $this-> session->userdata("codigo");
+        $nombresrespo     = $this-> input -> post ('nombresrespo');
+        $apellidosrespo   = $this-> input -> post ('apellidosrespo');
+        $arearespo        = $this-> input -> post ('arearespo'); 
+        $observaciones    = $this-> input -> post ('observaciones');    
+        $resultado = $this-> objExpediente -> ModificarRecepcionExpediente($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones);
+        echo json_encode($resultado);
+    }
 }

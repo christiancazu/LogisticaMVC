@@ -40,8 +40,6 @@ class Expediente extends CI_Controller {
         $resultado = $this -> objExpediente -> ObtenerDatosParaModificar($codigoconsulta);
         echo json_encode($resultado);
     }
-    
-  
     /*función para Consultar si el expediente existe y si esta disponible para enviar*/
     public function ConsultarParaEnviar() {
         $codigoconsulta = $this -> input -> post("buscar");
@@ -53,6 +51,16 @@ class Expediente extends CI_Controller {
         $resultado = $this -> objExpediente -> ObtenerDatosParaModificarEnvio($codigoconsulta);
         echo json_encode($resultado);
     }
-    
+    /*función para Consultar si el expediente existe y si esta disponible para recibir*/
+    public function ConsultarParaRecibir() {
+        $codigoconsulta = $this -> input -> post("buscar");
+        $resultado = $this -> objExpediente -> ConsultarParaRecibir($codigoconsulta);
+        echo json_encode($resultado);
+    }
+    public function ObtenerDatosParaModificarRecepcion() {
+        $codigoconsulta = $this -> input -> post("buscar");
+        $resultado = $this -> objExpediente -> ObtenerDatosParaModificarRecepcion($codigoconsulta);
+        echo json_encode($resultado);
+    }
     
 }

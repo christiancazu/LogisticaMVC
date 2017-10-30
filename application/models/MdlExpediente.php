@@ -128,5 +128,21 @@ class MdlExpediente extends CI_Model {
         $resultado = $this->db->query("CALL sp_ModificarEnvioExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."','".$arearespo."','".$observaciones."',".$fueradeareasiono.")"); 
         return $resultado -> result();
     }
-    
+    public function ConsultarParaRecibir($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_ConsultarParaRecibir('".$codigoexpe."')");
+        return $resultado -> result();
+    }
+    public function Recibir($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones) {
+        $resultado = $this->db->query("CALL sp_RecibirExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."','".$arearespo."','".$observaciones."',1)"); 
+        if ($resultado -> num_rows() > 0) return $resultado -> row();
+        else return false;
+    }
+    public function ObtenerDatosParaModificarRecepcion($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_ObtenerDatosParaModificarRecepcion('".$codigoexpe."')");
+        return $resultado -> result();
+    }
+    public function ModificarRecepcionExpediente($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones) {
+        $resultado = $this->db->query("CALL sp_ModificarRecepcionExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."','".$arearespo."','".$observaciones."')"); 
+        return $resultado -> result();
+    }
 }

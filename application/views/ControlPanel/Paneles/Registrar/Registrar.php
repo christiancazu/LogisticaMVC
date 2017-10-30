@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-md btn-primary btn-block borrar-button btn-verde" type="submit" disabled><strong>Modificar</strong></button>
-                                    <div id="mensaje-alert-modi">
+                                    <div id="mensaje-alert">
                                         <!--Contenido de la respuesta de Modificación de expediente enviado desde Usuario,js-->
                                     </div>
                                 </div>           

@@ -468,18 +468,18 @@ button:disabled{
 .panel-head.bg-azul,.panel-head.bg-verde{
     border-radius: 0;
 }
-#tabs-registrar .nav-pills > li > a,#tabs-enviar .nav-pills > li > a {
+#tabs-registrar .nav-pills > li > a,#tabs-enviar .nav-pills > li > a,#tabs-recibir .nav-pills > li > a {
     font-size: 18px;
     font-weight: 600;
     text-align: center;
     transform: scale(1);
     transition-duration: 0.75s;
 }
-#tabs-registrar .nav-pills > li.color-blue > a:hover,#tabs-enviar .nav-pills > li.color-blue > a:hover{
+#tabs-registrar .nav-pills > li.color-blue > a:hover,#tabs-enviar .nav-pills > li.color-blue > a:hover,#tabs-recibir .nav-pills > li.color-blue > a:hover{
     letter-spacing: 2px;
     transition-duration: letter-spacing 0.75s;
 }
-#tabs-registrar .nav-pills > li.color-green > a:hover,#tabs-enviar .nav-pills > li.color-green > a:hover{
+#tabs-registrar .nav-pills > li.color-green > a:hover,#tabs-enviar .nav-pills > li.color-green > a:hover,#tabs-recibir .nav-pills > li.color-green > a:hover{
     letter-spacing: 2px;
     transition-duration: letter-spacing 0.75s;
 }
@@ -487,7 +487,7 @@ button:disabled{
     margin-left: 0px !important;
     margin-bottom: -10px;
 }
-#tabs-registrar .nav-pills > li > a > i,#tabs-enviar .nav-pills > li > a > i{
+#tabs-registrar .nav-pills > li > a > i,#tabs-enviar .nav-pills > li > a > i, #tabs-recibir .nav-pills > li > a > i{
     display: block;
     font-size: 54px;   
     -webkit-transition-duration: 2.7s;
