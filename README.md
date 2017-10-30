@@ -54,9 +54,13 @@ Identificaciòn de Sessión del Usuario Identificado : 100%
 
 -Sujeto a testing
 
--Recepcionar: [En Analisis]
+-Recepcionar: [por testear]
 
-....
+-Implementado módulo de Recibir y Modificación
+
+-Campos validados
+
+-Sujeto a testing
 
 -Reporte:  [En Analisis]
 
