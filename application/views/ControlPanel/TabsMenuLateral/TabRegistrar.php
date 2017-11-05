@@ -1,0 +1,1 @@
+<li><a href="#registrar" data-toggle="tab"><span>&nbsp;&nbsp;&nbsp;&nbsp; Registrar <img class="img-menulateral" src="<?= IMG?>iconos/registrar.png" alt=""></span></a></li>

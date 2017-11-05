@@ -1,0 +1,1 @@
+<li><a href="#reportes" data-toggle="tab"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reporte <img class="img-menulateral" src="<?= IMG?>iconos/reporte.png" alt="" style="margin-left: 2px"></span></a></li>

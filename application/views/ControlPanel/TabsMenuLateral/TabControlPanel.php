@@ -1,0 +1,1 @@
+<li><a href="#controlpanel" data-toggle="tab"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Panel <img class="img-menulateral" src="<?= IMG?>iconos/paneldecontrol.png" alt=""></span></a></li>

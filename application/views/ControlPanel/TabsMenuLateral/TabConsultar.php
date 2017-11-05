@@ -1,0 +1,1 @@
+<li><a href="#consultar" data-toggle="tab"><span>&nbsp;&nbsp;&nbsp; Consultar <img class="img-menulateral" src="<?= IMG?>iconos/consultar.png" alt=""></span></a></li>

@@ -1,0 +1,1 @@
+<li><a href="#recibir" data-toggle="tab"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Recibir <img class="img-menulateral" src="<?= IMG?>iconos/recibir.png" alt=""></span></a></li>

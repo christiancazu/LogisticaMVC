@@ -1,7 +1,7 @@
 <div class="container tab-pane fade in" id="registrar">
     <div class="row">
         <div id="tabs-registrar">
-            <ul class="nav nav-pills">               
+            <ul class="nav nav-pills">
                 <li class="color-blue col-xs-3 col-xs-offset-3 tabs-gestion-expediente active">
                     <a href="#tab-reg" data-toggle="tab">Registrar</a>
                 </li>
@@ -12,13 +12,13 @@
             <div class="tab-content clearfix">
                 <!--TAB-REGISTRAR-->
                 <div class="tab-pane tab-registrar fade in col-sm-6 col-sm-offset-3 active" id="tab-reg">
-                    <div class="row">                  
-                        <form class="form" action="<?= base_url()?>Usuario/RegistrarExpediente" method="post" id="form-regexp">
+                    <div class="row">
+                        <form class="form" action="<?= base_url()?>Usuario/RegistrarExpediente" method="post" id="form-reg">
                             <div class="panel-head bg-azul">
                                 <h4 class="text-center">Datos de Registro</h4>
                             </div>
-                            <div class="panel-body">                        
-                                <div class="form-horizontal form-group">           
+                            <div class="panel-body">
+                                <div class="form-horizontal form-group">
                                     <label class="text-azul">Código de Expediente:</label>
                                 </div>
                                 <div class="form-inline">
@@ -39,36 +39,36 @@
                                     </div>
                                 </div>
                                 <div id="comprobacion-expe"><br>
-                                  <!--  muestra mensaje si es valido el expediente para registro-->
-                                </div> 
-                                <div class="form-horizontal form-group">              
+                                    <!--  muestra mensaje si es valido el expediente para registro-->
+                                </div>
+                                <div class="form-horizontal form-group">
                                     <label class="text-azul">Descripción de Expediente:</label>
                                     <textarea class="form-control input-registrar" id="border-round" name="descripcion" required maxlength="120"></textarea>
                                 </div>
-                                <div class="form-horizontal form-group">              
+                                <div class="form-horizontal form-group">
                                     <label class="text-azul">Observaciones de Registro:</label>
                                     <textarea class="form-control input-registrar" id="border-round" name="observaciones" maxlength="120"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-md btn-primary btn-block borrar-button btn-azul" type="submit" disabled>
-                                        <strong>Registrar</strong></button>
+                                    <strong>Registrar</strong></button>
                                     <div id="mensaje-alert-reg">
                                         <!--Contenido de la respuesta de Registro de expediente enviado desde Usuario.js-->
                                     </div>
                                 </div>
                             </div>
-                        </form>              
+                        </form>
                     </div>
                 </div>
                 <!--TAB-MODIFICAR-->
                 <div class="tab-pane tab-modificar fade in col-sm-6 col-sm-offset-3" id="tab-modreg">
                     <div class="row">
-                        <form class="form" action="<?= base_url()?>Usuario/ModificarRegistroExpediente" method="post" id="form-modiexp">
+                        <form class="form" action="<?= base_url()?>Usuario/ModificarRegistrarExpediente" method="post" id="form-reg-mod">
                             <div class="panel-head bg-verde">
                                 <h4 class="text-center">Datos de Modificación</h4>
                             </div>
                             <div class="panel-body">
-                                <div class="form-horizontal form-group">              
+                                <div class="form-horizontal form-group">
                                     <label class="text-verde">Código de Expediente:</label>
                                 </div>
                                 <div class="form-inline form-codigo">
@@ -89,9 +89,9 @@
                                     </div>
                                 </div>
                                 <div id="comprobacion-expe-modi"><br>
-                                  <!--  muestra mensaje si es valido el expediente para registro-->
+                                    <!--  muestra mensaje si es valido el expediente para registro-->
                                 </div>
-                                <div class="form-horizontal form-group">             
+                                <div class="form-horizontal form-group">
                                     <label class="text-verde">Nuevo código de Expediente :</label>
                                 </div>
                                 <div class="form-inline form-codigo-reg-mod">
@@ -115,7 +115,7 @@
                                     <label class="text-verde"><p>Descripción de Expediente:</p></label>
                                     <textarea class="form-control input-registrar" id="text-area-desc" name="descripcion" required maxlength="120"></textarea>
                                 </div>
-                                <div class="form-horizontal form-group">              
+                                <div class="form-horizontal form-group">
                                     <label class="text-verde"><p>Observaciones de Registro:</p></label>
                                     <textarea class="form-control input-registrar" id="text-area-obse" name="observaciones" maxlength="120"></textarea>
                                 </div>
@@ -124,7 +124,7 @@
                                     <div id="mensaje-alert">
                                         <!--Contenido de la respuesta de Modificación de expediente enviado desde Usuario,js-->
                                     </div>
-                                </div>           
+                                </div>
                             </div>
                         </form>
                     </div>

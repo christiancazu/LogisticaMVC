@@ -1,0 +1,1 @@
+<li><a href="#enviar" data-toggle="tab"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enviar <img class="img-menulateral" src="<?= IMG?>iconos/enviar.png" alt=""></span></a></li>

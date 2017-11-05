@@ -57,8 +57,8 @@ class MdlExpediente extends CI_Model {
      * @param  string $codigoexpenew recibe el nuevo código que se le dará al expediente
      * @return boolean  [[Description]]
      */
-    public function Modificar($codigoexpenew) {
-        $resultado = $this->db->query("CALL sp_ModificarExpediente('".$this->codexpe."','".$codigoexpenew."','".$this->descexpe."','".$this->obseexpe."')");
+    public function ModificarRegistrarExpediente($codigoexpenew) {
+        $resultado = $this->db->query("CALL sp_ModificarRegistrarExpediente('".$this->codexpe."','".$codigoexpenew."','".$this->descexpe."','".$this->obseexpe."')");
         if ($resultado -> num_rows() > 0) return true;
         else return false; 
     }
@@ -83,18 +83,17 @@ class MdlExpediente extends CI_Model {
     /**
      * Función para Enviar Expediente invocado por el contrlador Usuario 
      */
-    public function Enviar($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones, $fueradeareasiono) {
+    public function EnviarExpediente($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones, $fueradeareasiono) {
         $resultado = $this->db->query("CALL sp_EnviarExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."','".$arearespo."','".$observaciones."',".$fueradeareasiono.")"); 
-        if ($resultado -> num_rows() > 0) return $resultado -> row();
-        else return false;
+        return $resultado -> result();
     }
     /**
      * Función para consultar si el expediente es valido para registro
      * @param  [[Type]] $codigoexpe [[Description]]
      * @return [[Type]] [[Description]]
      */
-    public function ConsultarParaRegistrar($codigoexpe) {
-        $resultado = $this->db->query("CALL sp_ConsultarParaRegistrar('".$codigoexpe."')");
+    public function VerificarExpediente($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_VerificarExpediente('".$codigoexpe."')");
         return $resultado -> result();
     }
     /**
@@ -102,8 +101,8 @@ class MdlExpediente extends CI_Model {
      * @param  [[Type]] $codigoexpe [[Description]]
      * @return [[Type]] [[Description]]
      */
-    public function ObtenerDatosParaModificar($codigoexpe) {
-        $resultado = $this->db->query("CALL sp_ObtenerDatosParaModificar('".$codigoexpe."')");
+    public function DatosParaModificarRegistrar($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_DatosParaModificarRegistrar('".$codigoexpe."')");
         return $resultado -> result();
     }
     /**
@@ -111,8 +110,26 @@ class MdlExpediente extends CI_Model {
      * @param  [[Type]] $codigoexpe [[Description]]
      * @return [[Type]] [[Description]]
      */
-    public function ConsultarParaEnviar($codigoexpe) {
-        $resultado = $this->db->query("CALL sp_ConsultarParaEnviar('".$codigoexpe."')");
+    public function VerificarParaEnviar($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_VerificarParaEnviar('".$codigoexpe."')");
+        return $resultado -> result();
+    }
+    /**
+     * Función para consultar si el expediente es valido para modificar envio
+     * @param  [[Type]] $codigoexpe [[Description]]
+     * @return [[Type]] [[Description]]
+     */
+    public function VerificarParaModificarEnviar($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_VerificarParaModificarEnviar('".$codigoexpe."')");
+        return $resultado -> result();
+    }
+    /**
+     * Función para consultar si el expediente es valido para modificar recepción
+     * @param  [[Type]] $codigoexpe [[Description]]
+     * @return [[Type]] [[Description]]
+     */
+    public function VerificarParaModificarRecibir($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_VerificarParaModificarRecibir('".$codigoexpe."')");
         return $resultado -> result();
     }
     /**
@@ -120,29 +137,40 @@ class MdlExpediente extends CI_Model {
      * @param  [[Type]] $codigoexpe [[Description]]
      * @return [[Type]] [[Description]]
      */
-    public function ObtenerDatosParaModificarEnvio($codigoexpe) {
-        $resultado = $this->db->query("CALL sp_ObtenerDatosParaModificarEnvio('".$codigoexpe."')");
+    public function DatosParaModificarEnviar($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_DatosParaModificarEnviar('".$codigoexpe."')");
         return $resultado -> result();
     }
-    public function ModificarEnvioExpediente($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones, $fueradeareasiono) {
-        $resultado = $this->db->query("CALL sp_ModificarEnvioExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."','".$arearespo."','".$observaciones."',".$fueradeareasiono.")"); 
+    public function ModificarEnviarExpediente($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones, $fueradeareasiono) {
+        $resultado = $this->db->query("CALL sp_ModificarEnviarExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."','".$arearespo."','".$observaciones."',".$fueradeareasiono.")"); 
         return $resultado -> result();
     }
-    public function ConsultarParaRecibir($codigoexpe) {
-        $resultado = $this->db->query("CALL sp_ConsultarParaRecibir('".$codigoexpe."')");
+    public function VerificarParaRecibir($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_VerificarParaRecibir('".$codigoexpe."')");
         return $resultado -> result();
     }
     public function Recibir($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones) {
         $resultado = $this->db->query("CALL sp_RecibirExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."','".$arearespo."','".$observaciones."',1)"); 
-        if ($resultado -> num_rows() > 0) return $resultado -> row();
-        else return false;
-    }
-    public function ObtenerDatosParaModificarRecepcion($codigoexpe) {
-        $resultado = $this->db->query("CALL sp_ObtenerDatosParaModificarRecepcion('".$codigoexpe."')");
         return $resultado -> result();
     }
-    public function ModificarRecepcionExpediente($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones) {
-        $resultado = $this->db->query("CALL sp_ModificarRecepcionExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."','".$arearespo."','".$observaciones."')"); 
+    public function DatosParaModificarRecibir($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_DatosParaModificarRecibir('".$codigoexpe."')");
+        return $resultado -> result();
+    }
+    public function ModificarRecibirExpediente($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones) {
+        $resultado = $this->db->query("CALL sp_ModificarRecibirExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."','".$arearespo."','".$observaciones."')"); 
+        return $resultado -> result();
+    }
+    public function UltimoMovimiento($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_UltimoMovimiento('".$codigoexpe."')");
+        return $resultado -> result();
+    }
+    public function MostrarMovimientos($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_MostrarMovimientos('".$codigoexpe."')");
+        return $resultado -> result();
+    }
+    public function MostrarMovimientoExpediente($codigoexpe) {
+        $resultado = $this->db->query("CALL sp_MostrarMovimientoExpediente('".$codigoexpe."')");
         return $resultado -> result();
     }
 }

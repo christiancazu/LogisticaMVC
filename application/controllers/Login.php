@@ -22,6 +22,7 @@ class Login extends CI_Controller {
         $this -> objLogin -> MdlLogin($usuario,$password);
         /*LLama al método Identificar del modelo: MdlLogin*/
         $resultado = $this -> objLogin -> Identificar();
+        
         if ($resultado) {
             $nomyape = $this->ReducirNombre($resultado -> vchNomUsu, $resultado -> vchApeUsu);
             $datos = array(
@@ -32,7 +33,8 @@ class Login extends CI_Controller {
                 "nomyape"   => $nomyape,
                 "login"     => TRUE
             ); 
-            $this->session->set_userdata($datos);            
+            $this->session->set_userdata($datos);
+            redirect(base_url()."ControlPanel");
         }
         else echo "error";
     }

@@ -1,0 +1,1 @@
+<li><a href="#movimientos" data-toggle="tab"><span>Movimientos<img class="img-menulateral" src="<?= IMG?>iconos/movimientos.png" alt=""></span></a></li>

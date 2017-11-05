@@ -1,0 +1,1 @@
+<li><a href="javascript:void(0)" data-toggle="tab" id="salir"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Salir <img class="img-menulateral" src="<?= IMG?>iconos/logout.png" alt="" style="margin-left: 5px"></span></a></li>

@@ -8,7 +8,7 @@ html {
     height: 100%;
 }
 textarea {
-    resize:vertical;
+    resize:none;
     min-height: 60px;
 }
 .alert strong {
@@ -332,17 +332,15 @@ ul#tabs-lateral {
     margin: 0 auto;
     margin-top : 74px;
     padding: 0px;
-    left: -42px;
+    left: -64px;
     list-style: none;
     z-index:9999;
 }
 
 ul#tabs-lateral li a {
     display: block;
-    margin-left:20px;
-    padding-left: 10px;
-    padding-right: -10px;
-    width: 176px;
+    
+    width: 198px;
     height: 58px;   
     background-color:#0080C0;    
     background-position:center center;
@@ -365,8 +363,9 @@ ul#tabs-lateral li a:hover {
 }
 .img-menulateral {    
     height: 42px;
-    padding-left: 14px;
+    padding-left: 26px;
     margin-top: 6px;
+    
 }
 /*****************************************
 ***** PANELUSUARIO/PANELES/REGISTRAR *****
@@ -405,8 +404,7 @@ button:disabled{
     font-size: 18px;    
     padding: 0px;
     padding-left: -10px;
-    margin-left: 10px;
-    
+    margin-left: 10px;   
 }
 .input-group-addon.success {
     box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.5), 0 0 8px rgba(0, 200, 0, 1);
@@ -414,20 +412,16 @@ button:disabled{
     border: 0px solid rgba(76, 174, 76,1);
 }
 .input-group-addon.default {
-
     width: 100%;
     border-color: transparent;   
     border-radius: 6px;    
     padding: 0px;
-
 }
 #validate-text {
     border-radius: 5px;
     height: 24px;
     border: 1px solid #aaa;
-
     font-size: 16px;
-
 } 
 #validate-text::placeholder {
     padding:0;
@@ -436,7 +430,6 @@ button:disabled{
     font-size: 14px;
     opacity: 0.75;
 }
-
 .mensaje-alert-error,.mensaje-alert-correcto{
     border-radius: 10px;       
     margin: -54px 10px -13px 10px;    
@@ -467,6 +460,7 @@ button:disabled{
 }
 .panel-head.bg-azul,.panel-head.bg-verde{
     border-radius: 0;
+    margin-right: -2px;
 }
 #tabs-registrar .nav-pills > li > a,#tabs-enviar .nav-pills > li > a,#tabs-recibir .nav-pills > li > a {
     font-size: 18px;
@@ -534,7 +528,7 @@ button:disabled{
 /*****************************************
 *****|PANELUSUARIO/PANELES/CONSULTAR|*****
 *****************************************/
-.panel-consultar{
+.panel-consultar,.panel-movimientos{
     background: white;
     border-radius: 20px;
     border:4px solid #0080C0;
@@ -635,12 +629,41 @@ tbody,thead,.cf th {
 .modal-header {
     background:#0080C0;
 }
-#tr-a-href:hover{
+#consultar-tr-a-href:hover,#movimientos-tr-a-href:hover{
     background: rgba(0,0,0,0.55);
     color:white;
     cursor: pointer;
 }
-fieldset {
+.panel-modal-contenido {
+  background: #fff none repeat scroll 0 0;
+  height: auto;
+  margin-left: 20px;
+  padding: 3px 5px;
+  position: absolute;
+  margin-top: -47px;
+  border: 1px solid #0080C0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.panel-modal-titulo{
+    color: #0080C0;
+    font-weight: bold;
+    margin-top: -6px;
+    letter-spacing: 2px;
+}
+.panel {
+  /* for text on pannel */
+  margin-top: 27px !important;
+}
+
+.panel-modal-body {
+  padding-top: 30px !important;
+}
+.col-modal {
+    /*margin: 0 15px 0 15px;*/
+   
+}
+/*fieldset {
     border: 2px solid #ddd !important;
     margin: 0;
     min-width: 0;
@@ -659,20 +682,23 @@ legend {
     border-radius: 10px; 
     background-color: #ffffff;
     color:#0080C0;
-}
+}*/
 /*****************************************
 *******|PANELUSUARIO/PANELES/ENVIAR|******
 *****************************************/
+.panel-body {
+    margin: 0 20px 0 20px;
+}
+.form-movi {
+    
+   
+    border-radius: 6px;    
+    padding: 0px;  
+   
+    width: 220px;
+}
 
-.form-movi input {
-    font-size: 16px;    
-    color:black;
-    border-radius: 6px;       
-}
-.form-movi {  
-    margin-right: -10px;
-}
-.form-movi input::placeholder {
+.form-movi::placeholder {
     opacity: 0.6 !important; 
     font-size: 16px;    
     padding: 12px;  

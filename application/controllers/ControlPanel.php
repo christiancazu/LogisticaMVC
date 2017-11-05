@@ -3,14 +3,19 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 /* Clase Que controla el ControlPanel */
 class ControlPanel extends CI_Controller {
-
+    
+    var $objVistas;
+ 
     public function __construct() {
         parent::__construct();
         $this->load->model('MdlExpediente');
         $this->load->model('MdlFormatoFecha');
         if (!$this->session->userdata("login")) {
             redirect(base_url());
-        }
+        } else {
+            $this->load->model('MdlModulos');
+            $this->objVistas = new MdlModulos();
+        } 
     }
     /**
      * Función de inico de control panel que carga todas las vistas
@@ -20,18 +25,63 @@ class ControlPanel extends CI_Controller {
         $data=array('title' => 'Panel de Usuario');
         $this->load->view('HeadHtml',$data);
         $this->FormatodeFecha();
-        $data = array (
-            "ControlPanel" => $this->load->view('ControlPanel/Paneles/ControlPanel/ControlPanel','',true),
-            "Registrar" => $this->load->view('ControlPanel/Paneles/Registrar/Registrar','',true),
-            "Consultar" => $this->load->view('ControlPanel/Paneles/Consultar/Consultar','',true), 
-            "Enviar" => $this->load->view('ControlPanel/Paneles/Enviar/Enviar','',true), 
-            "Recibir" => $this->load->view('ControlPanel/Paneles/Recibir/Recibir','',true), 
-            "Reporte" => $this->load->view('ControlPanel/Paneles/Reporte/Reporte','',true)
-        );
-        $this->load->view('ControlPanel/MenuLateral',$data);       
-        $this->load->view('ControlPanel/FooterControlPanel');      
+        $this->CargarModulos();
+        $this->load->view('ControlPanel/FooterControlPanel'); 
+    }    
+    /**
+     * Función que carga los módulos según el tipo de usuario identificado
+     */
+    public function CargarModulos()  {
+        $modulos = [];
+        $vistas = [];
+        $tabslateral = [];
+        $array = $this->objVistas->CargarControlPanel();
+        array_push($tabslateral,$this->load->view($array['tab'],'',true));
+        $tipo = $this->session->userdata("tipo");
+         
+            if ($tipo == 2 || $tipo == 3 || $tipo == 4 || $tipo == 5) {
+            $array =  $this->objVistas->CargarRegistrar();   
+            array_push($modulos,    $this->load->view($array['modulo'],'',true));
+            array_push($vistas,     $this->load->view($array['vista'],'',true));
+            array_push($tabslateral,$this->load->view($array['tab'],'',true)); 
+            }
+            if ($tipo == 2 || $tipo == 3 ||  $tipo == 4 || $tipo == 5 || $tipo == 6) {
+            $array =  $this->objVistas->CargarConsultar();   
+            array_push($modulos,    $this->load->view($array['modulo'],'',true));
+            array_push($vistas,     $this->load->view($array['vista'],'',true));
+            array_push($tabslateral,$this->load->view($array['tab'],'',true));  
+            }
+            if ($tipo == 2 || $tipo == 3 || $tipo == 4) {
+            $array =  $this->objVistas->CargarEnviar();   
+            array_push($modulos,    $this->load->view($array['modulo'],'',true));
+            array_push($vistas,     $this->load->view($array['vista'],'',true));
+            array_push($tabslateral,$this->load->view($array['tab'],'',true));  
+            }
+            if ($tipo == 2 || $tipo == 3 || $tipo == 5) {
+            $array =  $this->objVistas->CargarRecibir();   
+            array_push($modulos,    $this->load->view($array['modulo'],'',true));
+            array_push($vistas,     $this->load->view($array['vista'],'',true));
+            array_push($tabslateral,$this->load->view($array['tab'],'',true));  
+            }
+            if ($tipo == 2 || $tipo == 3 || $tipo == 4 || $tipo == 5 || $tipo == 6) {
+            $array =  $this->objVistas->CargarMovimientos();   
+            array_push($modulos,    $this->load->view($array['modulo'],'',true));
+            array_push($vistas,     $this->load->view($array['vista'],'',true));
+            array_push($tabslateral,$this->load->view($array['tab'],'',true));  
+            }
+            if ($tipo == 2) {
+            $array =  $this->objVistas->CargarReportes();   
+            array_push($modulos,    $this->load->view($array['modulo'],'',true));
+            array_push($vistas,     $this->load->view($array['vista'],'',true));
+            array_push($tabslateral,$this->load->view($array['tab'],'',true));  
+            }
+           
+        $array = $this->objVistas->CargarSalir();
+        array_push($tabslateral,$this->load->view($array['tab'],'',true));
+        
+        $this->load->view('ControlPanel/MenuLateral',array_merge(compact("vistas"), compact("tabslateral")));
+        $this->load->view('ControlPanel/Paneles/ControlPanel/ControlPanel',compact("modulos"));   
     }
- 
     /**
      * Función que da formato a la fecha del sistema
      */
@@ -51,15 +101,5 @@ class ControlPanel extends CI_Controller {
     public function Salir() {
         $this->session->sess_destroy();
     }
-    
-    /*public function CargarViewReporte () {
-        $data=array('title' => 'Panel de Usuario');
-        $this->load->view('ControlPanel/Paneles/ReporteBody',$data);  
-    }
-    public function CargarViewRegistrar () {
-      
-        $this->load->view('ControlPanel/Paneles/Registrar');  
-    }*/
-}
 
-?>
+}
