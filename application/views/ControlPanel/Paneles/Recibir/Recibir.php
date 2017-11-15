@@ -19,7 +19,7 @@
                             </div>
                             <div class="panel-body">
                                 <label class="text-azul">Código de Expediente:</label>
-                                <div class="form-inline"><br>
+                                <div class="form-inline form-codigo"><br>
                                     <div class="input-group" data-validate="dosdigitos">
                                         <span class="input-group-addon default"><input type="text" class="input-codigo" name="cod1" id="validate-text" placeholder="0-9"  maxlength="2" required style="max-width: 46px;"></span>
                                     </div>
@@ -56,7 +56,9 @@
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label class="text-azul">Area del Responsable:</label>
-                                            <input class="form-control" name="arearespo" required placeholder="Area" maxlength="30" />
+                                            <select class="selectpicker form-control" name="arearespo" required id ="selectareas">
+                                               <!--Cargar las areas de trabajo desde expediente.js-->   
+                                            </select>
                                         </div>
                                     </div>                                    
                                 </div>
@@ -90,7 +92,7 @@
                             </div>
                             <div class="panel-body">
                                 <label class="text-verde">Código de Expediente:</label>
-                                <div class="form-inline"><br>
+                                <div class="form-inline form-codigo"><br>
                                     <div class="input-group" data-validate="dosdigitos">
                                         <span class="input-group-addon default"><input type="text" class="input-codigo" name="cod1" id="validate-text" placeholder="0-9"  maxlength="2" required style="max-width: 46px;"></span>
                                     </div>
@@ -127,7 +129,9 @@
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label class="text-verde">Area del Responsable:</label>
-                                            <input class="form-control" name="arearespo" required placeholder="Area" maxlength="30" />
+                                            <select class="selectpicker form-control" name="arearespo" required id ="selectareas">
+                                               <!--Cargar las areas de trabajo desde expediente.js-->   
+                                            </select>
                                         </div>
                                     </div>                                   
                                 </div>

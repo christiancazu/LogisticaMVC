@@ -1,0 +1,1 @@
+<li><a href="#consultarusuario" data-toggle="tab"><span style="letter-spacing:-1px">Consu. Usuario<img class="img-menulateral" src="<?= IMG?>iconos/consultarusuario.png" alt="" style="margin-left:-8px"></span></a></li>

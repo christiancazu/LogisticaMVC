@@ -21,7 +21,7 @@
                                 <div class="form-horizontal form-group">
                                     <label class="text-azul">Código de Expediente:</label>
                                 </div>
-                                <div class="form-inline">
+                                <div class="form-inline form-codigo">
                                     <div class="input-group" data-validate="dosdigitos">
                                         <span class="input-group-addon default"><input type="text" class="input-codigo" name="cod1" id="validate-text" placeholder="0-9"  maxlength="2" required style="max-width: 46px;"></span>
                                     </div>

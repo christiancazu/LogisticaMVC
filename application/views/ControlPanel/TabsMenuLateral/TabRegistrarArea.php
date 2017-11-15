@@ -1,0 +1,1 @@
+<li><a href="#registrararea" data-toggle="tab"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reg. área <img class="img-menulateral" src="<?= IMG?>iconos/registrararea.png" alt=""></span></a></li>

@@ -4,6 +4,6 @@
     <script src="<?= JS?>validarcodigo.js"></script>
     <script src="<?= JS?>Usuario.js"></script>
     <script src="<?= JS?>Expediente.js"></script>
-    <script src="<?= JS?>test.js"></script>
+    <script src="<?= JS?>Admin.js"></script>
 </body>
 </html>

@@ -763,3 +763,53 @@ legend {
 .switch-field label:last-of-type {
     border-radius: 0 4px 4px 0;
 }
+
+/*****************************************
+*******|ADMINISTRADOR|******
+*****************************************/
+.cbx-input {
+  display: none;
+}
+
+.cbx-dni {
+background-color: #BBB;
+border-radius: 4px;
+font-weight: 700;
+color: #FFF;
+text-align: center;
+width: auto;
+padding: 5px;
+cursor: pointer;
+display: block;
+margin: 0 auto;
+transition: background-color 250ms ease-in;
+}
+
+.cbx-dni:hover {
+background-color: #33b7a3;
+}
+
+.cbx-input:checked + .cbx-dni {
+background: #33b7a3;
+background-size: 15px 13px;
+}
+
+.cbx-input:checked:hover + .cbx-dni {
+color: rgba(255,255,255,0.5);
+background: #ccc;
+background-size: 15px 15px;
+}
+
+.row-center{
+    text-align: center !important;
+}
+.tips{
+    font-weight: 600;
+    background : white;
+    color : #0080C0;
+    font-size: 16px;    
+    padding: 2px;
+    border :2px solid #0080C0;
+    border-radius: 50%;
+    text-decoration: none;
+}

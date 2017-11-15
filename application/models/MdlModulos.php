@@ -20,6 +20,34 @@ class MdlModulos extends CI_Model {
         return $ControlPanel;
     }
     /**
+     * Función que contiene las rutas de las vistas del módulo RegistrarUsuario
+     * @return [[Type]] [[Description]]
+     */
+    public function CargarRegistrarUsuario() {
+        $RegistrarUsuario = [
+            "modulo" => "ControlPanel/Paneles/ControlPanel/RegistrarUsuario",
+            "vista"  => "ControlPanel/Paneles/RegistrarUsuario/RegistrarUsuario",
+            "tab"    => "ControlPanel/TabsMenuLateral/TabRegistrarUsuario"
+        ];
+        return $RegistrarUsuario;
+    }
+    public function CargarRegistrarArea() {
+        $RegistrarArea = [
+            "modulo" => "ControlPanel/Paneles/ControlPanel/RegistrarArea",
+            "vista"  => "ControlPanel/Paneles/RegistrarArea/RegistrarArea",
+            "tab"    => "ControlPanel/TabsMenuLateral/TabRegistrarArea"
+        ];
+        return $RegistrarArea;
+    }
+    public function CargarConsultarUsuario() {
+        $ConsultarUsuario = [
+            "modulo" => "ControlPanel/Paneles/ControlPanel/ConsultarUsuario",
+            "vista"  => "ControlPanel/Paneles/ConsultarUsuario/ConsultarUsuario",
+            "tab"    => "ControlPanel/TabsMenuLateral/TabConsultarUsuario"
+        ];
+        return $ConsultarUsuario;
+    }
+    /**
      * Función que contiene las rutas de las vistas del módulo Registrar
      * @return [[Type]] [[Description]]
      */
@@ -101,5 +129,15 @@ class MdlModulos extends CI_Model {
         ];
         return $Salir;
     }
-    
+    /**
+     * Función para obtener las areas de los módulos
+     */
+    public function CargarAreas() {        
+        $resultado = $this->db->get("vw_areadetrabajo");
+        return $resultado -> result();
+    }
+    public function CargarTipoUsuario() {        
+        $resultado = $this->db->get("vw_tipodeusuario");
+        return $resultado -> result();
+    }
 }

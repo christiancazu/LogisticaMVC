@@ -49,7 +49,7 @@ defined('FOPEN_WRITE_CREATE_STRICT')            OR define('FOPEN_WRITE_CREATE_ST
 defined('FOPEN_READ_WRITE_CREATE_STRICT')       OR define('FOPEN_READ_WRITE_CREATE_STRICT', 'x+b');
 
 
-define('BASE_URL', 'http://localhost/LogisticaMVC/');
+define('BASE_URL', 'http://localhost/Logistica/LogisticaMVC/');
 define('ASSETS',    BASE_URL.'assets/');
 
 define('CSS',       ASSETS.'css/');

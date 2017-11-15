@@ -62,17 +62,20 @@ function ModificarRegistrarExpediente(){
             data:$(this).serialize(),
             success:function(resultado){
                 if(resultado==="no modificado"){
-                    htmlbuttonx = "";
-                    htmlbuttonx += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
-                    htmlbuttonx += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> Uno de los expedientes, no es inválido para modificar.</div>';                  
+                    html = "";
+                    html += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
+                    html += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> Uno de los expedientes no es válido para modificar.</div>';                  
                 }
                 else {
-                    htmlbuttonx = "";
-                    htmlbuttonx += '<div class="alert alert-success mensaje-alert-correcto" id="alert-error">';
-                    htmlbuttonx += ' <i class="fa fa-times-circle fa-2x"><strong> Correcto ! </strong></i> El Expediente ha sido Modificado.</div>';
+                    html = "";
+                    html += '<div class="alert alert-success mensaje-alert-correcto" id="alert-error">';
+                    html += ' <i class="fa fa-times-circle fa-2x"><strong> Correcto ! </strong></i> El Expediente ha sido Modificado.</div>';
+                    mensaje = "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'> &nbsp; </p>";
+                    $("#form-reg-mod #comprobacion-expe-modi").html(mensaje);
                     LimpiarFormulario() ;
+
                 }
-                $("#form-reg-mod #mensaje-alert").html(htmlbuttonx); 
+                $("#form-reg-mod #mensaje-alert").html(html); 
                 $("#form-reg-mod .borrar-button").toggleClass("desaparecer");
                 setTimeout(function(){ $("#form-reg-mod #alert-error").toggleClass("aparecer"); }, 1);
                 setTimeout(function(){ $("#form-reg-mod #alert-error").removeClass("aparecer"); }, 3000);
@@ -176,6 +179,8 @@ function ModificarEnviarExpediente(){
                     htmlbuttonenvio += '<div class="alert alert-success mensaje-alert-correcto" id="alert-error">';
                     htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> Correcto ! </strong></i> El Expediente ha sido modificado.</div>'; 
                     LimpiarFormulario();
+                    mensaje = "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'> &nbsp; </p>";
+                    $("#form-envio-mod #comprobacion-expe").html(mensaje);
                 }
                 $("#form-envio-mod #mensaje-alert").html(htmlbuttonenvio); 
                 $("#form-envio-mod .borrar-button").toggleClass("desaparecer");
@@ -209,6 +214,8 @@ function ModificarRecibirExpediente(){
                     htmlbuttonenvio += '<div class="alert alert-success mensaje-alert-correcto" id="alert-error">';
                     htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> Correcto ! </strong></i> El Expediente ha sido modificado.</div>'; 
                     LimpiarFormulario();
+                    mensaje = "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'> &nbsp; </p>";
+                    $("#form-recibir-mod #comprobacion-expe").html(mensaje);
                 }
                 $("#form-recibir-mod #mensaje-alert").html(htmlbuttonenvio); 
                 $("#form-recibir-mod .borrar-button").toggleClass("desaparecer");
@@ -223,8 +230,8 @@ function ModificarRecibirExpediente(){
 /*función para limpiar formularios*/
 function LimpiarFormulario() {
     $("input[type='text']").each(function () {
-            $(this).val("");
-        });
+        $(this).val("");
+    });
     $("#consultar #table-consulta").html("");
     $("#movimientos #table-movimientos").html("");
     $("#comprobacion-expe p").html(" ");
@@ -232,7 +239,6 @@ function LimpiarFormulario() {
     $(".btn-azul").attr("disabled", true);
     $(".btn-verde").attr("disabled", true);
     $("textarea").html("");
-    //$("#table-consulta").css("display", "none");
     $("#table-consulta").trigger("reset");
     $("#form-reg").trigger("reset");
     $("#form-reg-mod").trigger("reset");
@@ -240,6 +246,10 @@ function LimpiarFormulario() {
     $("#form-envio-mod").trigger("reset");
     $("#form-recibir").trigger("reset");
     $("#form-recibir-mod").trigger("reset");
+    $("#form-regusu").trigger("reset");
+    $("#form-regusu-mod").trigger("reset");
+    $("#form-regarea").trigger("reset");
+    $("#form-regarea-mod").trigger("reset");    
     $( ".input-group-addon" ).removeClass("success");
     $( '.anho' ).addClass("success");
 }

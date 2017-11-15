@@ -84,7 +84,7 @@ class MdlExpediente extends CI_Model {
      * Función para Enviar Expediente invocado por el contrlador Usuario 
      */
     public function EnviarExpediente($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones, $fueradeareasiono) {
-        $resultado = $this->db->query("CALL sp_EnviarExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."','".$arearespo."','".$observaciones."',".$fueradeareasiono.")"); 
+        $resultado = $this->db->query("CALL sp_EnviarExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."',".$arearespo.",'".$observaciones."',".$fueradeareasiono.")"); 
         return $resultado -> result();
     }
     /**
@@ -150,7 +150,7 @@ class MdlExpediente extends CI_Model {
         return $resultado -> result();
     }
     public function Recibir($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones) {
-        $resultado = $this->db->query("CALL sp_RecibirExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."','".$arearespo."','".$observaciones."',1)"); 
+        $resultado = $this->db->query("CALL sp_RecibirExpediente('".$codigoexpe."',".$codigousuenvio.",'".$nombresrespo."','".$apellidosrespo."',".$arearespo.",'".$observaciones."',1)"); 
         return $resultado -> result();
     }
     public function DatosParaModificarRecibir($codigoexpe) {
@@ -173,4 +173,5 @@ class MdlExpediente extends CI_Model {
         $resultado = $this->db->query("CALL sp_MostrarMovimientoExpediente('".$codigoexpe."')");
         return $resultado -> result();
     }
+    
 }

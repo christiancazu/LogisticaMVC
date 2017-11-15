@@ -6,7 +6,7 @@ $(document).on("ready", VerificarParaEnviar());
 $(document).on("ready", DatosParaModificarEnviar());
 $(document).on("ready", VerificarParaRecibir());
 $(document).on("ready", DatosParaModificarRecibir());
-
+$(document).on("ready", CargarAreas());
 
 
 $("#cargar-cp a").click(function () {
@@ -33,9 +33,11 @@ function ValidarCodigo(form) {
         /^[0-9]{4,4}$/.test($(form + " [name='cod4']").val()) &&
         /^[0-9]{1,1}$/.test($(form + " [name='cod5']").val())) {
         var codexp = "";
-        $(form + " .form-inline input").each(function () {
-            codexp += $(this).val();
+        
+        $(form + " .form-codigo input").each(function () {
+            codexp += $(this).val();            
         });
+        
         return codexp;
     } else return false;
 }
@@ -44,9 +46,10 @@ function ValidarCodigo(form) {
  */
 function VerificarParaRegistrar() {
     var form = '#form-reg';
-    $(form + " .form-inline").keyup("change", function () {
+    $(form + " .form-codigo").on("change keyup blur input",function () {
         /*Se envia a la función ValidarCodigo la variable form que contiene el id del formulario como string*/
         if (codigo = ValidarCodigo(form)) {
+           
             $.ajax({
                 type: "POST",
                 url: "Expediente/VerificarExpediente",
@@ -71,13 +74,12 @@ function VerificarParaRegistrar() {
         }
     });
 }
-
-$("body").click(function () {
-
-    //alert (e);
-
-});
-
+/**
+ * Función Para mostrar los mensajes de verificacion
+ * @param   {[[Type]]} color       [[Description]]
+ * @param   {[[Type]]} msjdemodulo [[Description]]
+ * @returns {[[Type]]} [[Description]]
+ */
 function MensajeDeVerificacion(color, msjdemodulo) {
     msjcorrecto = "<p class='text-center mensaje-registro-valido' style='color:" + color + "; font-weight:bold;'>El expediente es válido para " + msjdemodulo + "</p>";
     msjincorrecto = "<p class='text-center mensaje-registro-valido' style='color:" + color + "; font-weight:bold;'>El expediente NO es válido para " + msjdemodulo + "</p>";
@@ -87,9 +89,11 @@ function MensajeDeVerificacion(color, msjdemodulo) {
  * Función para Comprobar si el código de expediente es válido para modificar y llenar los campos de descripción y modificación
  */
 function DatosParaModificarRegistrar() {
-    var form = '#form-reg-mod';
-    $(form + " .form-codigo").keyup(function () {
+    var form = '#form-reg-mod';  
+    $(form + " .form-codigo").on("change keyup blur input",function () {
+        
         if (codigo = ValidarCodigo(form)) {
+            
             $.ajax({
                 type: "POST",
                 url: "Expediente/VerificarExpediente",
@@ -99,6 +103,7 @@ function DatosParaModificarRegistrar() {
                 success: function (resultado) {
                     var registro = eval(resultado);
                     if (registro[0]['result'] == 1) {
+                        
                         $.ajax({
                             type: "POST",
                             url: "Expediente/DatosParaModificarRegistrar",
@@ -108,8 +113,8 @@ function DatosParaModificarRegistrar() {
                             success: function (resultado) {
                                 var datosparamodificar = eval(resultado);
                                 if (datosparamodificar.length > 0) {
-                                    $(form + " #text-area-desc").val(datosparamodificar[0]["descripcion"]);
-                                    $(form + " #text-area-obse").val(datosparamodificar[0]["observaciones"]);
+                                    $(form + " #text-area-desc").val(datosparamodificar[0]["DescExpe"]);
+                                    $(form + " #text-area-obse").val(datosparamodificar[0]["ObseExpe"]);
                                     mensaje = MensajeDeVerificacion("green", "Modificar");
                                     $(form + " #comprobacion-expe-modi").html(mensaje).hide().fadeIn(750);
                                 }
@@ -124,8 +129,9 @@ function DatosParaModificarRegistrar() {
                 }
             });
         } else {
-            mensaje = "";
-            mensaje += "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'> &nbsp; </p>";
+            $(form + " #text-area-desc").val("");
+            $(form + " #text-area-obse").val("");
+            mensaje = "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'> &nbsp; </p>";
             $(form + " #comprobacion-expe-modi").html(mensaje);
         }
     });
@@ -135,11 +141,11 @@ function DatosParaModificarRegistrar() {
  */
 function Consultar() {
 
-    $("#form-consultar #consuexp-input3").keyup(function () {
+    $("#form-consultar #consuexp-input3").on("change keyup blur input",function () {
 
-        letra3 = $("#form-consultar #consuexp-input3").val();
+        letra = $("#form-consultar #consuexp-input3").val();
 
-        Filtrar(letra3);
+        Filtrar(letra);
     });
     $("#consultar").on("click", "#table-consulta tr", function (event) {
         event.preventDefault();
@@ -147,7 +153,6 @@ function Consultar() {
         MostrarExpediente(expedienteselect);
     });
 }
-
 /**
  * Función invocada por la vista Consultar
  */
@@ -161,7 +166,7 @@ function ConsultarMovimientos() {
         MostrarMovimientos(letra3);
     });
     $("#movimientos").on("click", "#table-movimientos tr", function (event) {
-        
+
         event.preventDefault();
         expedienteselect = $(this).attr("href");
         MostrarMovimientoExpediente(expedienteselect);
@@ -179,7 +184,7 @@ function Filtrar(letra) {
             codigo: letra
         },
         success: function (resultado) {
-            //alert(resultado);
+            
             var registro = eval(resultado);
             if (registro.length == 0) {
                 $('#modal-nohayconsulta').modal('show');
@@ -222,7 +227,10 @@ function Filtrar(letra) {
         }
     });
 }
-
+/**
+ * Función para Mostrar Los Movimientos
+ * @param {[[Type]]} codigo [[Description]]
+ */
 function MostrarMovimientos(codigo) {
     $.ajax({
         url: "Expediente/MostrarMovimientos",
@@ -231,7 +239,7 @@ function MostrarMovimientos(codigo) {
             codigo: codigo
         },
         success: function (resultado) {
-            //alert(resultado);
+            
             var registro = eval(resultado);
             if (registro[0]['result'] == 0) {
 
@@ -283,11 +291,10 @@ function MostrarExpediente(expedienteselect) {
             codigo: expedienteselect
         },
         success: function (resultado) {
-            var registro = eval(resultado);
-            bodydatosreg = "";
-            bodydatosreg += '<div class="container-fluid">';
-            bodydatosreg += '<h3 class="panel-modal-titulo">Código : <label class="text-negro">' + registro[0]["codexpe"] + '</label></h3>';
-            switch (registro[0]['descestado']) {
+            var registro = eval(resultado);           
+            bodydatosreg = '<div class="container-fluid">';
+            bodydatosreg += '<h3 class="panel-modal-titulo">Código : <label class="text-negro">' + registro[0]["CodExpe"] + '</label></h3>';
+            switch (registro[0]['DescEstado']) {
                 case "Disponible":
                     bodydatosreg += '<h4 class="panel-modal-titulo">Estado : <label style="color : green;">Disponible</h4>';
                     break;
@@ -301,11 +308,11 @@ function MostrarExpediente(expedienteselect) {
             bodydatosreg += '<div class="panel-modal-body">';
             bodydatosreg += '<h3 class="panel-modal-contenido text-primary"><strong class="text-uppercase"> Datos de Registro </strong></h3>';
 
-            bodydatosreg += ContenidoModalConsultar("Registrado por : ", registro[0]["usureg"]);
-            bodydatosreg += ContenidoModalConsultar("Fecha de Registro : ", registro[0]["fecreg"]);
-            bodydatosreg += ContenidoModalConsultar("Descripción : ", registro[0]["descexpe"]);
-            bodydatosreg += ContenidoModalConsultar("Oservaciones : ", registro[0]["obseexpe"]);
-            bodydatosreg += '<input type="hidden" id="codigo-redireccion" value=' + registro[0]["codexpe"] + '>';
+            bodydatosreg += ContenidoModalConsultar("Registrado por : ", registro[0]["UsuReg"]);
+            bodydatosreg += ContenidoModalConsultar("Fecha de Registro : ", registro[0]["FecReg"]);
+            bodydatosreg += ContenidoModalConsultar("Descripción : ", registro[0]["DescExpe"]);
+            bodydatosreg += ContenidoModalConsultar("Oservaciones : ", registro[0]["ObseExpe"]);
+            bodydatosreg += '<input type="hidden" id="codigo-redireccion" value=' + registro[0]["CodExpe"] + '>';
             bodydatosreg += '</div></div>';
 
             bodydatosreg += '<div class="panel panel-primary">';
@@ -338,7 +345,7 @@ function MostrarExpediente(expedienteselect) {
                     htmlfootermodal = "";
                     htmlfootermodal += '<button type="button" class="btn btn-lg btn-primary btn-modal col-md-4 col-md-offset-2 lead"';
                     htmlfootermodal += 'data-dismiss="modal" id="ir-a-movimientos"><strong>Ver movimientos</strong></button>';
-                    if (registro[0]['descestado'] === "Disponible") {
+                    if (registro[0]['DescEstado'] === "Disponible") {
                         htmlfootermodal += '<button type="button" class="btn btn-lg btn-primary btn-modal col-md-4 lead"';
                         htmlfootermodal += 'data-dismiss="modal" id="enviar-expe"><strong>Enviar</strong></button>';
                     } else {
@@ -371,6 +378,9 @@ function MostrarExpediente(expedienteselect) {
         }
     });
 }
+/**
+ * Función para Redirigir a otros módulos
+ */
 function RedirigirAMovimientos (codigo, tab, form) {
     $('[href=' + tab + ']').click();
     $(form + " #consuexp-input3").val(codigo);
@@ -380,7 +390,7 @@ function RedirigirAMovimientos (codigo, tab, form) {
  * @param {[[Type]]} expedienteselect [[Description]]
  */
 function MostrarMovimientoExpediente(expedienteselect) {
-    
+
     $.ajax({
         url: "Expediente/MostrarMovimientoExpediente",
         type: "POST",
@@ -443,7 +453,7 @@ function RedirigirAFormulario(codigo, tab, subtab, form) {
     mensaje = "<p class='text-center mensaje-registro-valido' style='font-weight:bold; color:green;'>";
     mensaje += (form == "#form-envio") ?
         "El expediente es válido para Enviar" :
-        "El expediente es válido para Recepcionar";
+    "El expediente es válido para Recepcionar";
     $(form + " #comprobacion-expe").html(mensaje + "</p>").hide().fadeIn(750);
 }
 /**
@@ -465,8 +475,9 @@ function DescomponerCodigo(codigo) {
  * Función para comprobar si el expediente se puede enviar
  */
 function VerificarParaEnviar() {
-    $("#form-envio .form-inline").keyup(function () {
-        form = '#form-envio ';
+    var form = '#form-envio ';
+    $(form + ".form-codigo").on("change keyup blur input",function () {
+        
         if (codigo = ValidarCodigo(form)) {
             $.ajax({
                 type: "POST",
@@ -481,12 +492,12 @@ function VerificarParaEnviar() {
                     } else {
                         mensaje = MensajeDeVerificacion("green", "Enviar");
                     }
-                    $("#form-envio #comprobacion-expe").html(mensaje).hide().fadeIn(750);
+                    $(form + "#comprobacion-expe").html(mensaje).hide().fadeIn(750);
                 }
             });
         } else {
             mensaje = "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'>&nbsp;</p>";
-            $("#form-envio #comprobacion-expe").html(mensaje);
+            $(form + "#comprobacion-expe").html(mensaje);
         }
     });
 }
@@ -495,7 +506,7 @@ function VerificarParaEnviar() {
  */
 function DatosParaModificarEnviar() {
     var form = '#form-envio-mod ';
-    $(form + ".form-inline").keyup(function () {
+    $(form + ".form-codigo").on("change keyup blur input",function () {
         if (codigo = ValidarCodigo(form)) {
             $.ajax({
                 type: "POST",
@@ -515,10 +526,19 @@ function DatosParaModificarEnviar() {
                             success: function (resultado) {
                                 var datosparamodificar = eval(resultado);
                                 if (datosparamodificar.length > 0) {
-                                    $(form + 'input[type=radio]').prop('checked', false);
+                                    //$(form + 'input[type=radio]').prop('checked', false);
                                     $(form + "[name='nombresrespo']").val(datosparamodificar[0]["NomRespo"]);
                                     $(form + "[name='apellidosrespo']").val(datosparamodificar[0]["ApeRespo"]);
-                                    $(form + "[name='arearespo']").val(datosparamodificar[0]["AreaRespo"]);
+
+                                    var value = "option[value="+datosparamodificar[0]['AreaRespo']+"]";
+                                    $(form + "#selectareas " + value).prop('selected', true); 
+
+                                    if (datosparamodificar[0]["EstadoExpe"]==0) {
+                                        $(form + "#switch_leftx").prop('checked', true);
+                                    } else {
+                                        $(form + "#switch_rightx").prop('checked', true);
+                                    }
+
                                     $(form + "textarea").val(datosparamodificar[0]["ObseMovi"]);
                                     mensaje = MensajeDeVerificacion("green", "Modificar");
                                     $(form + "#comprobacion-expe").html(mensaje).hide().fadeIn(750);
@@ -537,17 +557,28 @@ function DatosParaModificarEnviar() {
                 }
             });
         } else {
+            $(form + "textarea").val("");
+            $(form + "[name='nombresrespo']").val("");
+            $(form + "[name='apellidosrespo']").val("");
+            $(form + "[name='arearespo']").val("");
+            $(form + 'input[type=radio]').prop('checked', false);
+
             mensaje = "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'> &nbsp; </p>";
             $(form + "#comprobacion-expe").html(mensaje);
         }
     });
 }
+
+function selectOption(index){ 
+    document.getElementById("selectareas").options.selectedIndex = index;
+}
+
 /**
  * Función para comprobar si el expediente se puede recepcionar
  */
 function VerificarParaRecibir() {
     var form = '#form-recibir ';
-    $(form + ".form-inline").keyup(function () {
+    $(form + ".form-codigo").on("change keyup blur input",function () {
         if (codigo = ValidarCodigo(form)) {
             $.ajax({
                 type: "POST",
@@ -576,7 +607,7 @@ function VerificarParaRecibir() {
  */
 function DatosParaModificarRecibir() {
     var form = '#form-recibir-mod ';
-    $(form + ".form-inline").keyup(function () {
+    $(form + ".form-codigo").on("change keyup blur input",function () {
         if (codigo = ValidarCodigo(form)) {
             $.ajax({
                 type: "POST",
@@ -599,7 +630,10 @@ function DatosParaModificarRecibir() {
                                     $(form + 'input[type=radio]').prop('checked', false);
                                     $(form + "[name='nombresrespo']").val(datosparamodificar[0]["NomRespo"]);
                                     $(form + "[name='apellidosrespo']").val(datosparamodificar[0]["ApeRespo"]);
-                                    $(form + "[name='arearespo']").val(datosparamodificar[0]["AreaRespo"]);
+
+                                    var value = "option[value="+datosparamodificar[0]['AreaRespo']+"]";
+                                    $(form + "#selectareas " + value).prop('selected', true); 
+
                                     $(form + "textarea").val(datosparamodificar[0]["ObseMovi"]);
                                     mensaje = MensajeDeVerificacion("green", "Modificar");
                                     $(form + "#comprobacion-expe").html(mensaje).hide().fadeIn(750);
@@ -618,8 +652,34 @@ function DatosParaModificarRecibir() {
                 }
             });
         } else {
+            $(form + "textarea").val("");
+            $(form + "[name='nombresrespo']").val("");
+            $(form + "[name='apellidosrespo']").val("");
+            $(form + "[name='arearespo']").val("");
+            $(form + 'input[type=radio]').prop('checked', false);
             mensaje = "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'> &nbsp; </p>";
             $(form + "#comprobacion-expe").html(mensaje);
+        }
+    });
+}
+function CargarAreas() {
+
+    $.ajax({
+        type: "POST",
+        url: "ControlPanel/CargarAreas",                
+        success: function (resultado) {
+            
+            var registro = eval(resultado);
+            areas = "<option selected disabled hidden value=''>Elija un área</option>";
+            var j = 1;
+            for(var i=0 ; i<registro.length ; i++) {
+                areas += "<option value=" +j+ ">"+registro[i]['DescArea']+"</option>";
+                j++;
+            }            
+            $("#enviar #selectareas").html(areas); 
+            $("#recibir #selectareas").html(areas); 
+            $("#registrarusuario #selectareas").html(areas);
+            $("#registrararea #selectareas").html(areas);
         }
     });
 }
