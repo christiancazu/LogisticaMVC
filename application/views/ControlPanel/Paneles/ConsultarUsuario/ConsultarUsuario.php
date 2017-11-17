@@ -1,16 +1,29 @@
 <div class="container tab-pane fade in" id="consultarusuario">
     <div class="row">
-        <div class="col-sm-6 col-md-offset-3" style="margin-bottom:20px">
+        <div class="col-sm-8 col-md-offset-2" style="margin-bottom:20px">
             <div class="panel-consultar">
                 <div class="panel-head bg-azul consultar-border">
                     <h4 class="text-center">Consulta de Usuarios</h4>
                 </div>
                 <div class="panel-body">
-                    <div class="form-inline form-codigo">
-                        <form id="form-consultar-usu">
-                            <h4><label class="text-azul">Ingrese Apellido :</label>
-                                <input type="text" class="input-codigo text-negro" id="consu-usu-letra"></h4>
-                        </form>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <h4><label class="text-azul pull-right">Ingrese Apellido :</label></h4>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group form-codigo">
+                                <form id="form-consultar-usu">
+                                    <input type="text" class="input-codigo text-negro" id="consu-usu-letra" style="width:100%">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <button class="btn-consultar">Mostrar Todos</button>
+                            </div>
+                        </div>
                     </div>
                 </div>    
             </div> 

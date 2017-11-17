@@ -26,6 +26,7 @@ class ControlPanel extends CI_Controller {
         $this->load->view('HeadHtml',$data);
         $this->FormatodeFecha();
         $this->CargarModulos();
+        $this->load->view('ControlPanel/Paneles/ControlPanel/CambiarPassword');
         $this->load->view('ControlPanel/FooterControlPanel'); 
     }    
     /**

@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
 
     var $objLogin;
-    
+
     function __construct() {
         parent::__construct();
         $this->load->model('MdlLogin');
@@ -18,12 +18,15 @@ class Login extends CI_Controller {
         $usuario   = $this -> input -> post('usuario');
         $password  = $this -> input -> post('password');
         /*Instanciamiento e inicialización de objeto del modelo: MdlLogin*/
-        
+
         $this -> objLogin -> MdlLogin($usuario,$password);
         /*LLama al método Identificar del modelo: MdlLogin*/
         $resultado = $this -> objLogin -> Identificar();
-        
-        if ($resultado) {
+        if ($resultado -> result == "inactivo") {
+            echo "inactivo";
+        } else if ($resultado -> result == "incorrecto") {
+            echo "incorrecto";
+        } else {
             $nomyape = $this->ReducirNombre($resultado -> vchNomUsu, $resultado -> vchApeUsu);
             $datos = array(
                 "nombres"   => $resultado -> vchNomUsu,
@@ -34,9 +37,9 @@ class Login extends CI_Controller {
                 "login"     => TRUE
             ); 
             $this->session->set_userdata($datos);
-            redirect(base_url()."ControlPanel");
+                redirect(base_url()."ControlPanel");
         }
-        else echo "error";
+            //redirect(base_url()."ControlPanel");
     }
     /**
      * Funcion Para Reducir el nombre a mostrar en la cabecera de ControlPanel
@@ -46,7 +49,7 @@ class Login extends CI_Controller {
      * @param [[Type]] $apellidos [[Description]]
      */
     public function ReducirNombre($nombres,$apellidos) {
-        
+
         $i=0;
         for ( $i ; $i < strlen($nombres) ; $i++ ) 
             if ( substr($nombres, $i, 1) == " " )                

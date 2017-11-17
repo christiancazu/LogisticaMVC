@@ -34,8 +34,8 @@
                             
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-user fa-border"></i>Ver Perfil</a></li>
-                            <li><a href="#"><i class="fa fa-sign-out fa-border"></i>Salir</a></li>          
+                            <li><a href="#" id="cambiar-pass"><i class="fa fa-user fa-border"></i>Cambiar Contraseña</a></li>
+                            <li><a href="#" id="salir"><i class="fa fa-sign-out fa-border"></i>Salir</a></li>          
                         </ul>
                     </li> 
                 </ul>

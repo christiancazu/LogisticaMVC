@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-md btn-primary btn-block borrar-button btn-azul" type="submit" disabled>
-                                    <strong>Registrar</strong></button>
+                                        <strong>Registrar</strong></button>
                                     <div id="mensaje-alert-reg">
                                         <!--Contenido de la respuesta de Registro de expediente enviado desde Usuario.js-->
                                     </div>
@@ -91,32 +91,46 @@
                                 <div id="comprobacion-expe-modi"><br>
                                     <!--  muestra mensaje si es valido el expediente para registro-->
                                 </div>
-                                <div class="form-horizontal form-group">
-                                    <label class="text-verde">Nuevo código de Expediente :</label>
+                                <div class="row row-center">
+                                    <div class="col-xs-6 col-xs-offset-3">
+                                        <div class="form-group">
+                                            <label>                                       
+                                                <input type="checkbox" class="cbx-input" name="" value="" id="cbx-expe-new"/>
+                                                <span class="cbx-dni">Cambiar código de Expediente</span>
+                                            </label>
+                                        </div>
+                                    </div> 
                                 </div>
-                                <div class="form-inline form-codigo-reg-mod">
-                                    <div class="input-group" data-validate="dosdigitos">
-                                        <span class="input-group-addon default"><input type="text" class="input-codigo" name="cod1-new" id="validate-text" placeholder="0-9"  maxlength="2" required style="max-width: 46px;"></span>
+                                <div id="dni-usu-new" class="hidden">
+                                    <div class="form-horizontal form-group">
+                                        <label class="text-verde">Nuevo código de Expediente:</label>
                                     </div>
-                                    <div class="input-group" data-validate="dosdigitos">
-                                        <span class="input-group-addon default anho"><input type="text" class="input-codigo" name="cod2-new" id="validate-text" placeholder="0-9" maxlength="2" value="18" required style="max-width: 46px;"></span>
-                                    </div>
-                                    <div class="input-group" data-validate="uncaracter">
-                                        <span class="input-group-addon default"><input type="text" class="input-codigo" name="cod3-new" id="validate-text" placeholder="a-z" maxlength="1" required style="max-width: 46px;"></span>
-                                    </div>
-                                    <div class="input-group" data-validate="cuatrodigitos">
-                                        <span class="input-group-addon default" style="border-radius: 10px;"><input type="text" class="input-codigo" name="cod4-new" id="validate-text" placeholder="0-9" maxlength="4" required style="max-width: 72px;"></span>
-                                    </div>
-                                    <div class="input-group" data-validate="undigito">
-                                        <span class="input-group-addon default"><input type="text" class="input-codigo" name="cod5-new" id="validate-text" placeholder="0-9" maxlength="1" required style="max-width: 46px;"></span>
+                                    <div class="form-inline form-codigo-reg-mod">
+                                        <div id="div-input-group" data-validate="dosdigitos">
+                                            <span class="input-group-addon default"><input type="text" class="input-codigo" name="cod1-new" id="validate-text" placeholder="0-9" pattern="[0-9]{2,2}" maxlength="2" style="max-width: 46px;"></span>
+                                        </div>
+                                        <div id="div-input-group" data-validate="dosdigitos">
+                                            <span class="input-group-addon default"><input type="text" class="input-codigo" name="cod2-new" id="validate-text" placeholder="0-9" pattern="[0-9]{2,2}" maxlength="2"  style="max-width: 46px;"></span>
+                                        </div>
+                                        <div id="div-input-group" data-validate="uncaracter">
+                                            <span class="input-group-addon default"><input type="text" class="input-codigo" name="cod3-new" id="validate-text" placeholder="a-z" pattern="[a-zA-Z]{1,1}" maxlength="1" style="max-width: 46px;"></span>
+                                        </div>
+                                        <div id="div-input-group" data-validate="cuatrodigitos">
+                                            <span class="input-group-addon default" style="border-radius: 10px;"><input type="text" class="input-codigo" name="cod4-new" id="validate-text" placeholder="0-9" maxlength="4" pattern="[0-9]{4,4}" style="max-width: 72px;"></span>
+                                        </div>
+                                        <div id="div-input-group" data-validate="undigito">
+                                            <span class="input-group-addon default"><input type="text" class="input-codigo" name="cod5-new" id="validate-text" placeholder="0-9" maxlength="1" pattern="[0-9]{1,1}" style="max-width: 46px;"></span>
+                                        </div>
                                     </div>
                                 </div>
+
+
                                 <div class="form-horizontal form-group">
-                                    <label class="text-verde"><p>Descripción de Expediente:</p></label>
+                                    <label class="text-verde">Descripción de Expediente:</label>
                                     <textarea class="form-control input-registrar" id="text-area-desc" name="descripcion" required maxlength="120"></textarea>
                                 </div>
                                 <div class="form-horizontal form-group">
-                                    <label class="text-verde"><p>Observaciones de Registro:</p></label>
+                                    <label class="text-verde">Observaciones de Registro:</label>
                                     <textarea class="form-control input-registrar" id="text-area-obse" name="observaciones" maxlength="120"></textarea>
                                 </div>
                                 <div class="form-group">

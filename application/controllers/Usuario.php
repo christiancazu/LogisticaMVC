@@ -4,12 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /* Clase Que controla el la funciones del Usuario */
 class Usuario extends CI_Controller {
   
-    var $objExpediente;
+    var $objExpediente,$objLogin;
     
     public function __construct() {
         parent::__construct();        
-        $this -> load -> model('MdlExpediente');  
+        $this -> load -> model('MdlExpediente');
+        $this -> load -> model('MdlLogin'); 
         $this -> objExpediente = new MdlExpediente();
+        $this -> objLogin = new MdlLogin();
     }   
     /**
      * Función de registro de Expediente
@@ -38,9 +40,10 @@ class Usuario extends CI_Controller {
                            $this-> input -> post ('cod5');
         $codigoexpenew   = $this-> input -> post ('cod1-new').
                            $this-> input -> post ('cod2-new').
-                           strtoupper($this -> input -> post ('cod3')).
+                           strtoupper($this -> input -> post ('cod3-new')).
                            $this-> input -> post ('cod4-new').
                            $this-> input -> post ('cod5-new');
+        if ($codigoexpenew=="") $codigoexpenew = $codigoexpe;
         $descripcion     = $this-> input -> post ('descripcion');
         $observaciones   = $this-> input -> post ('observaciones');
         
@@ -104,7 +107,7 @@ class Usuario extends CI_Controller {
         $resultado = $this-> objExpediente -> Recibir($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones);
         echo json_encode($resultado);
     }
-     public function ModificarRecibirExpediente() {
+    public function ModificarRecibirExpediente() {
         $codigoexpe       = $this-> input -> post ('cod1').
                             $this-> input -> post ('cod2').
                             strtoupper($this-> input -> post ('cod3')).
@@ -116,6 +119,13 @@ class Usuario extends CI_Controller {
         $arearespo        = $this-> input -> post ('arearespo'); 
         $observaciones    = $this-> input -> post ('observaciones');    
         $resultado = $this-> objExpediente -> ModificarRecibirExpediente($codigoexpe, $codigousuenvio, $nombresrespo, $apellidosrespo, $arearespo, $observaciones);
+        echo json_encode($resultado);
+    }
+    public function CambiarPassword() {
+        $codigousu = $this-> session->userdata("codigo");
+        $oldpass   = $this-> input -> post ('oldpass');
+        $newpass   = $this-> input -> post ('newpass');
+        $resultado = $this-> objLogin -> CambiarPassword($codigousu, $oldpass, $newpass);
         echo json_encode($resultado);
     }
 }

@@ -18,7 +18,6 @@ $("#cbx-dni-new").click(function () {
     }
 });
 
-
 function CargarTipoUsuario() {
 
     $.ajax({
@@ -78,7 +77,7 @@ function RegistrarUsuario() {
 
 function VerificarParaRegistrarUsuario() {
     var form = "#form-regusu ";
-    $(form + "[name='dniusu']").on("change keyup blur input", function () {
+    $(form + "[name='dniusu']").on("blur change keyup input", function () {
         if (/^[0-9]{8,8}$/.test($(form + "[name='dniusu']").val())) {
             $.ajax({
                 type: "POST",
@@ -106,7 +105,7 @@ function VerificarParaRegistrarUsuario() {
 
 function DatosParaModificarRegistrarUsuario() {
     var form = "#form-regusu-mod ";
-    $(form + "[name='dniusu']").on("change keyup blur input",function () {
+    $(form + "[name='dniusu']").on("blur change keyup input",function () {
         if (/^[0-9]{8,8}$/.test($(form + "[name='dniusu']").val())) {
             $.ajax({
                 type: "POST",
@@ -199,9 +198,9 @@ function ModificarRegistrarUsuario(){
                     htmlbuttonx += '<div class="alert alert-success mensaje-alert-correcto" id="alert-error">';
                     htmlbuttonx += ' <i class="fa fa-times-circle fa-2x"><strong> Correcto ! </strong></i> El Usuario ha sido Modificado.</div>';
                     LimpiarFormulario();
-                    $("#dni-usu-new").addClass("hidden");
-                    $("#dni-usu-new [name='dniusunew']").val("");
-                    $("#dni-usu-new [name='dniusunew']").prop("required",false);
+                    $(form + "#dni-usu-new").addClass("hidden");
+                    $(form + "#dni-usu-new [name='dniusunew']").val("");
+                    $(form + "#dni-usu-new [name='dniusunew']").prop("required",false);
                     mensaje = "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'> &nbsp; </p>";
                     $(form + "#comprobacion-dni").html(mensaje);                    
                 }
@@ -258,6 +257,9 @@ function RegistrarAreaTrabajo() {
 
 function ConsultarUsuario() {
     var form ="#form-consultar-usu ";
+    $("#consultarusuario .btn-consultar").click(function (event) {        
+       FiltrarUsuario(""); 
+    });
     $(form + "#consu-usu-letra").on("change keyup blur input",function () {
 
         letra = $(form + "#consu-usu-letra").val();
@@ -287,18 +289,20 @@ function FiltrarUsuario(letra) {
                 htmlnoencontro = "";
                 htmlnoencontro = '" ' + consultanula + ' "';
                 $("#modal-nohayconsulta-usu #codigo-nulo").html(htmlnoencontro);
-                $("#registrar-usu").click(function () {
-                    $('[href="#registrarusu"]').click();
+                $("#registrar-usu").click(function () {                    
+                    $('[href="#registrarusuario"]').click();
                     $('[href="#tab-regusu"]').click();
+
                 });
             } else {
                 htmlfilas = "";
                 htmlfilas = '<table class="col-md-8 col-md-offset-2 table-bordered table-striped table-condensed cf"><thead class="cf">';
-                htmlfilas += '<tr><th>Código</th><th>Usuario</th><th>Tipo</th><th>Area</th><th>Estado</th></tr>';
+                htmlfilas += '<tr><th>Código</th><th>Nombres</th><th>Apellidos</th><th>Tipo</th><th>Area</th><th>Estado</th></tr>';
                 htmlfilas += '</thead><tbody>';
                 for (var i = 0; i < registro.length; i++) {
                     htmlfilas += '<tr id="consultar-tr-a-href" href=' + registro[i]['CodUsu'] + '><td>' + registro[i]['CodUsu'] + '</td>';
-                    htmlfilas += '<td>' + registro[i]['NomUsu'] + ' ' +registro[i]['ApeUsu'] + '</td>';
+                    htmlfilas += '<td>' + registro[i]['ApeUsu'] + '</td>';
+                    htmlfilas += '<td>' + registro[i]['NomUsu'] + '</td>';                    
                     htmlfilas += '<td>' + registro[i]['TipoUsu'] + '</td>';
                     htmlfilas += '<td>' + registro[i]['DescAreaUsu'] + '</td>';
                     switch (registro[i]['EstadoUsu']) {
@@ -359,7 +363,7 @@ function MostrarUsuario(usuarioselect) {
             $("#modal-consultar-usu #info-expe").html(bodydatosreg);
 
             htmlfootermodal = '<button type="button" class="btn btn-lg btn-primary btn-modal col-md-4 col-md-offset-4 lead"';
-            htmlfootermodal += 'data-dismiss="modal" id="ir-a-registrar"><strong>Modificar</strong></button>';
+            htmlfootermodal += 'data-dismiss="modal" id="ir-a-modificar"><strong>Modificar</strong></button>';
             /* if (registro[0]['DescEstado'] === "Disponible") {
                         htmlfootermodal += '<button type="button" class="btn btn-lg btn-primary btn-modal col-md-4 lead"';
                         htmlfootermodal += 'data-dismiss="modal" id="enviar-expe"><strong>Enviar</strong></button>';
@@ -371,8 +375,8 @@ function MostrarUsuario(usuarioselect) {
             $('#modal-consultar-usu').modal('show');
             /*en la variable " codigo " captura el código en la ventana modal para colocarlo en formulario enviar/registrar/recibir*/
             dni = registro[0]["DniUsu"];
-            
-            $("#ir-a-registrar").click(function () {
+
+            $("#ir-a-modificar").click(function () {
                 tab = '"#registrarusuario"';
                 form = '#form-regusu-mod';
                 RedirigirARegistrar(dni, tab, form);
@@ -380,18 +384,14 @@ function MostrarUsuario(usuarioselect) {
         }
     });
 }
+
 function RedirigirARegistrar(dni, tab, form) {
     $('[href=' + tab + ']').click();
     $('[href="#tab-modregusu"]').click();
-    //$(form + " [name='dniusu']").val(dni);
-    $(form + " [name='dniusu']").val(dni);
-    var e = jQuery.Event("keypress");
-e.which = 13; //choose the one you want
-e.keyCode = 13;
-
-    setTimeout(function () {
-                    $("input").trigger("keydown", {which: 50}); 
-                }, 2000);
+    $(form + " [name='dniusu']").prop("autofocus", true);
+    $(form + " [name='dniusu']").val(dni); 
+    setTimeout(function () { $(form + " [name='dniusu']").focus(); }, 250);
+    setTimeout(function () { $(form + " #selecttipousu").focus(); }, 500);
     
     
 }

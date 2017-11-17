@@ -294,6 +294,15 @@ input:focus {
 /********************************
 ***** PANELUSUARIO/CABECERA *****
 ********************************/
+.dropdown-menu {
+    font-size: 18px;
+    margin-left: -60px;
+}
+.dropdown-menu li a:hover {
+    background: #0080C0;
+    color: white;
+}
+
 .navbar-panelusuario {
     background: #0080C0;    
     border: 1px solid white; 
@@ -430,7 +439,7 @@ button:disabled{
     font-size: 14px;
     opacity: 0.75;
 }
-.mensaje-alert-error,.mensaje-alert-correcto{
+.mensaje-alert-error,.mensaje-alert-correcto,.mensaje-alert-advertencia{
     border-radius: 10px;       
     margin: -54px 10px -13px 10px;    
     text-align: center;
@@ -440,10 +449,13 @@ button:disabled{
 .mensaje-alert-error{ 
     border: 2px solid #AC3D4A;
 }
+.mensaje-alert-advertencia{ 
+    border: 2px solid #DBA901;
+}
 .mensaje-alert-correcto{
     border: 2px solid green;
 }
-.mensaje-alert-error.aparecer,.mensaje-alert-correcto.aparecer {  
+.mensaje-alert-error.aparecer,.mensaje-alert-correcto.aparecer,.mensaje-alert-advertencia.aparecer {  
     opacity: 1;    
     transition: all 1s;
 }
@@ -812,4 +824,25 @@ background-size: 15px 15px;
     border :2px solid #0080C0;
     border-radius: 50%;
     text-decoration: none;
+}
+.tips:focus {
+     outline: none;
+    text-decoration: none;
+}
+.btn-consultar {
+    border : 1px solid #0080C0;
+    background: #0080C0 !important;
+    font-size: 16px !important;
+}
+.btn-consultar:hover {
+    border : 1px solid #0080C0;
+    background: #fff !important;
+    color: #0080C0;
+    font-size: 16px !important;
+}
+
+.lbl-cambiar-pass {
+    text-align: right;
+    
+    color: black;
 }

@@ -5,11 +5,12 @@ $(document).on("ready",EnviarExpediente());
 $(document).on("ready",ModificarEnviarExpediente());
 $(document).on("ready",RecibirExpediente());
 $(document).on("ready",ModificarRecibirExpediente());
+$(document).on("ready",CambiarPassword());
 
-$("a").click(function () {
+$("a").not('[href="#modal-tiposusu"]').click(function () {
     LimpiarFormulario();
-
 });
+
 $("#consuexp-input3").keypress(function(event){
     if (event.keyCode === 13) 
         event.preventDefault();
@@ -31,7 +32,7 @@ function RegistrarExpediente(){
                 if(registros[0]['result']==0){
                     htmlbutton = "";
                     htmlbutton += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
-                    htmlbutton += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> El Expediente ya está Registrado.</div>';           
+                    htmlbutton += ' <i class="fa fa-times-circle fa-2x"><strong> error </strong></i> El Expediente ya está Registrado.</div>';           
                 }
                 else {
                     htmlbutton = "";
@@ -64,15 +65,19 @@ function ModificarRegistrarExpediente(){
                 if(resultado==="no modificado"){
                     html = "";
                     html += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
-                    html += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> Uno de los expedientes no es válido para modificar.</div>';                  
+                    html += ' <i class="fa fa-times-circle fa-2x"><strong> error </strong></i> Uno de los expedientes no es válido para modificar.</div>';                  
                 }
                 else {
                     html = "";
                     html += '<div class="alert alert-success mensaje-alert-correcto" id="alert-error">';
-                    html += ' <i class="fa fa-times-circle fa-2x"><strong> Correcto ! </strong></i> El Expediente ha sido Modificado.</div>';
-                    mensaje = "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'> &nbsp; </p>";
+                    html += ' <i class="fa fa-times-circle fa-2x"><strong> Correcto ! </strong></i> El Expediente ha sido Modificado.</div>';                    
                     $("#form-reg-mod #comprobacion-expe-modi").html(mensaje);
-                    LimpiarFormulario() ;
+                    LimpiarFormulario();
+                    $("#form-reg-mod #dni-usu-new").addClass("hidden");
+                    $("#form-reg-mod #dni-usu-new input").val("");
+                    $("#form-reg-mod #dni-usu-new input").prop("required",false);
+                    mensaje = "<p class='text-center mensaje-registro-valido' style='color:red; font-weight:bold;'> &nbsp; </p>";
+                    $("#form-reg-mod #comprobacion-expe-modi").html(mensaje); 
 
                 }
                 $("#form-reg-mod #mensaje-alert").html(html); 
@@ -102,7 +107,7 @@ function EnviarExpediente(){
                     //alert("no");
                     htmlbuttonenvio = "";
                     htmlbuttonenvio += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
-                    htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> El Expediente no puede ser enviado.</div>'; 
+                    htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> error </strong></i> El Expediente no puede ser enviado.</div>'; 
                 }
                 else {
                     //alert("si");
@@ -137,7 +142,7 @@ function RecibirExpediente(){
                 var registro = eval(resultado);
                 if(registro[0]['result'] == 0){                
                     htmlbuttonrecibir += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
-                    htmlbuttonrecibir += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> El Expediente no puede ser recibido.</div>'; 
+                    htmlbuttonrecibir += ' <i class="fa fa-times-circle fa-2x"><strong> error </strong></i> El Expediente no puede ser recibido.</div>'; 
                 }
                 else {                 
                     htmlbuttonrecibir += '<div class="alert alert-success mensaje-alert-correcto" id="alert-error">';
@@ -171,7 +176,7 @@ function ModificarEnviarExpediente(){
                     //alert("no");
                     htmlbuttonenvio = "";
                     htmlbuttonenvio += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
-                    htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> El Expediente no puede ser modificado.</div>'; 
+                    htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> error </strong></i> El Expediente no puede ser modificado.</div>'; 
                 }
                 else {
                     //alert("si");
@@ -206,7 +211,7 @@ function ModificarRecibirExpediente(){
                     //alert("no");
                     htmlbuttonenvio = "";
                     htmlbuttonenvio += '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
-                    htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> Error ! </strong></i> El Expediente no puede ser modificado.</div>'; 
+                    htmlbuttonenvio += ' <i class="fa fa-times-circle fa-2x"><strong> error </strong></i> El Expediente no puede ser modificado.</div>'; 
                 }
                 else {
                     //alert("si");
@@ -227,11 +232,64 @@ function ModificarRecibirExpediente(){
         });
     });             
 }
+
+function CambiarPassword() {
+    var form = "#form-cambiar-pass ";
+    $(form).submit(function(event){
+        event.preventDefault();
+        if ($(form + "[name='newpass']").val() == $(form + "[name='newpassconfirm']").val()) {
+            $.ajax({
+                url:$(this).attr("action"),
+                type:$(this).attr("method"),
+                data:$(this).serialize(),            
+                success:function(resultado){
+                    var registros = eval(resultado);
+                    if(registros[0]['result']==0){                       
+                        htmlbutton = '<div class="alert alert-danger mensaje-alert-error" id="alert-error">';
+                        htmlbutton += ' <i class="fa fa-times-circle fa-2x"><strong> error </strong></i> La Contraseña es incorrecta.</div>';           
+                    }
+                    else {                       
+                        htmlbutton = '<div class="alert alert-success mensaje-alert-correcto" id="alert-error">';
+                        htmlbutton += ' <i class="fa fa-times-circle fa-2x"><strong> Correcto ! </strong></i> La Contraseña ha sido cambiada.</div>'; 
+                        $(form + "input[type='password']").each(function () {
+                            $(this).val("");
+                        });
+                        LimpiarFormulario();
+                    }
+                    $(form + "#mensaje-alert").html(htmlbutton); 
+                    $(form + ".borrar-button").toggleClass("desaparecer");
+                    setTimeout(function(){ $(form + "#alert-error").toggleClass("aparecer"); }, 1);
+                    setTimeout(function(){ $(form + "#alert-error").removeClass("aparecer"); }, 3000);
+                    setTimeout(function(){ $(form + ".borrar-button").toggleClass("desaparecer"); }, 3250);
+                    setTimeout(function(){ $(form + "#alert-error").css("display","none"); }, 3250); 
+                    $(form + "[name]")
+                }
+            });
+        }
+        else {
+
+            htmlbutton = '<div class="alert alert-warning mensaje-alert-advertencia" id="alert-error">';
+            htmlbutton += ' <i class="fa fa-exclamation-circle fa-2x"><strong> Error </strong></i> Las contraseñas no coinciden.</div>';
+            $(form + "#mensaje-alert").html(htmlbutton); 
+            $(form + ".borrar-button").toggleClass("desaparecer");
+            setTimeout(function(){ $(form + "#alert-error").toggleClass("aparecer"); }, 1);
+            setTimeout(function(){ $(form + "#alert-error").removeClass("aparecer"); }, 3000);
+            setTimeout(function(){ $(form + ".borrar-button").toggleClass("desaparecer"); }, 3250);
+            setTimeout(function(){ $(form + "#alert-error").css("display","none"); }, 3250);
+        }
+    });  
+
+}
+
+
+
 /*función para limpiar formularios*/
 function LimpiarFormulario() {
     $("input[type='text']").each(function () {
         $(this).val("");
     });
+    $("#form-regusu-mod [name='dniusu']").trigger("reset");
+    $("p").html("&nbsp;");
     $("#consultar #table-consulta").html("");
     $("#movimientos #table-movimientos").html("");
     $("#comprobacion-expe p").html(" ");
@@ -249,9 +307,13 @@ function LimpiarFormulario() {
     $("#form-regusu").trigger("reset");
     $("#form-regusu-mod").trigger("reset");
     $("#form-regarea").trigger("reset");
-    $("#form-regarea-mod").trigger("reset");    
+    $("#form-regarea-mod").trigger("reset"); 
+    $("#consultarusuario").trigger("reset");   
+    $("#consultarusuario #table-consulta").html("");
     $( ".input-group-addon" ).removeClass("success");
     $( '.anho' ).addClass("success");
+
+
 }
 /********************************************************************/
 

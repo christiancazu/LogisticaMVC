@@ -26,9 +26,11 @@ class MdlLogin extends CI_Model {
  *                   sino retorna false          
  */
     function Identificar() {
-
-        $resultado = $this -> db -> query("CALL sp_IdentificarUsuario('".$this->usuario."','".$this->password."')");
-        if ($resultado -> num_rows() > 0) return $resultado -> row();
-        else return false;
+        $resultado = $this -> db -> query("CALL sp_IdentificarUsuario('".$this->usuario."','".$this->password."')");      
+        return $resultado -> row();   
     }    
+    function CambiarPassword($codigousu, $oldpass, $newpass) {
+        $resultado = $this->db->query("CALL sp_CambiarPassword(".$codigousu.",'".$oldpass."','".$newpass."')");
+        return $resultado -> result();
+    }
 }

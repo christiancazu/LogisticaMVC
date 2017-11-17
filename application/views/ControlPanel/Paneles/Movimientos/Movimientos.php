@@ -5,14 +5,29 @@
                 <div class="panel-head bg-azul consultar-border">
                     <h4 class="text-center">Movimientos de Expediente</h4>
                 </div>
+                <form id="form-movimientos">
                 <div class="panel-body">
-                    <div class="form-inline form-codigo">
-                        <form id="form-movimientos" class="">
-                            <h4><label class="text-azul">Ingrese código :</label>
-                                <input type="text" class="input-codigo text-negro" id="consuexp-input3" maxlength="10">&nbsp;&nbsp;<button class="btn btn-md bg-azul text-blanco" id="buscar-movimientos"><strong> Consultar</strong></button></input></h4>  
-                        </form>
-                    </div>
-                </div>    
+                   <div class="row">
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <h4><label class="text-azul pull-right">Ingrese código :</label></h4>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group form-codigo">
+                                
+                                    <input type="text" class="input-codigo text-negro" id="consuexp-input3" style="width:100%">
+                                
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <button class="btn-consultar" id="buscar-movimientos">Consultar</button>
+                            </div>
+                        </div>
+                    </div>                
+                </div>  
+                </form>  
             </div> 
         </div> 
     </div>        

@@ -22,7 +22,7 @@
                                 <div class="row">
                                     <div class="col-xs-4 col-xs-offset-4">
                                         <div class="form-group">
-                                            <input id="we" class="form-control <text-center></text-center>" name="dniusu" required placeholder="dni" pattern="[0-9]{8,8}" maxlength="8" style="font-size:20px"/>
+                                            <input class="form-control text-center" name="dniusu" required placeholder="dni" pattern="[0-9]{8,8}" maxlength="8" style="font-size:20px"/>
                                         </div>
                                     </div>                                   
                                 </div>
@@ -93,7 +93,7 @@
                                 <div class="row">
                                     <div class="col-xs-4 col-xs-offset-4">
                                         <div class="form-group">
-                                            <input class="form-control text-center" name="dniusu" required placeholder="dni" pattern="[0-9]{8,8}" maxlength="8" autofocus="autofocus" style="font-size:20px"/>
+                                            <input class="form-control text-center" name="dniusu" required placeholder="dni" pattern="[0-9]{8,8}" maxlength="8" style="font-size:20px"/>
                                         </div>
                                     </div>                                   
                                 </div>
@@ -137,7 +137,7 @@
                                     <div class="col-xs-6">
                                         <div class="form-group">
                                             <label class="text-verde">Tipo de Usuario: &nbsp;</label>
-                                            <a href="#modal-tiposusu" data-toggle="modal" data-target="#modal-tiposusu" class="tips">&nbsp;?&nbsp;</a>
+                                            <a href="#modal-tiposusu" data-toggle="modal" data-target="#modal-tiposusu" class="tips" style="color:#33b7a3; border:2px solid #33b7a3">&nbsp;?&nbsp;</a>
                                             <select class="selectpicker form-control" name="tipousu" required id="selecttipousu">
                                                 <!--Cargar las areas de trabajo desde expediente.js-->   
                                             </select>
@@ -153,7 +153,7 @@
                                     </div>
                                 </div>
                                 <div class="row row-center">                                    
-                                    <div class="col-xs-4 col-xs-offset-4">
+                                    <div class="col-xs-6 col-xs-offset-3">
                                         <div class="form-group">
                                             <label class="text-verde">Usuario Activo :</label>
                                             <div class="switch-field">

@@ -33,11 +33,11 @@ function ValidarCodigo(form) {
         /^[0-9]{4,4}$/.test($(form + " [name='cod4']").val()) &&
         /^[0-9]{1,1}$/.test($(form + " [name='cod5']").val())) {
         var codexp = "";
-        
+
         $(form + " .form-codigo input").each(function () {
             codexp += $(this).val();            
         });
-        
+
         return codexp;
     } else return false;
 }
@@ -49,7 +49,7 @@ function VerificarParaRegistrar() {
     $(form + " .form-codigo").on("change keyup blur input",function () {
         /*Se envia a la función ValidarCodigo la variable form que contiene el id del formulario como string*/
         if (codigo = ValidarCodigo(form)) {
-           
+
             $.ajax({
                 type: "POST",
                 url: "Expediente/VerificarExpediente",
@@ -91,9 +91,9 @@ function MensajeDeVerificacion(color, msjdemodulo) {
 function DatosParaModificarRegistrar() {
     var form = '#form-reg-mod';  
     $(form + " .form-codigo").on("change keyup blur input",function () {
-        
+
         if (codigo = ValidarCodigo(form)) {
-            
+
             $.ajax({
                 type: "POST",
                 url: "Expediente/VerificarExpediente",
@@ -103,7 +103,7 @@ function DatosParaModificarRegistrar() {
                 success: function (resultado) {
                     var registro = eval(resultado);
                     if (registro[0]['result'] == 1) {
-                        
+
                         $.ajax({
                             type: "POST",
                             url: "Expediente/DatosParaModificarRegistrar",
@@ -140,7 +140,9 @@ function DatosParaModificarRegistrar() {
  * Función invocada por la vista Consultar
  */
 function Consultar() {
-
+    $("#consultar .btn-consultar").click(function (event) {        
+       Filtrar(""); 
+    });
     $("#form-consultar #consuexp-input3").on("change keyup blur input",function () {
 
         letra = $("#form-consultar #consuexp-input3").val();
@@ -184,7 +186,7 @@ function Filtrar(letra) {
             codigo: letra
         },
         success: function (resultado) {
-            
+
             var registro = eval(resultado);
             if (registro.length == 0) {
                 $('#modal-nohayconsulta').modal('show');
@@ -239,7 +241,7 @@ function MostrarMovimientos(codigo) {
             codigo: codigo
         },
         success: function (resultado) {
-            
+
             var registro = eval(resultado);
             if (registro[0]['result'] == 0) {
 
@@ -477,7 +479,7 @@ function DescomponerCodigo(codigo) {
 function VerificarParaEnviar() {
     var form = '#form-envio ';
     $(form + ".form-codigo").on("change keyup blur input",function () {
-        
+
         if (codigo = ValidarCodigo(form)) {
             $.ajax({
                 type: "POST",
@@ -668,11 +670,11 @@ function CargarAreas() {
         type: "POST",
         url: "ControlPanel/CargarAreas",                
         success: function (resultado) {
-            
+
             var registro = eval(resultado);
             areas = "<option selected disabled hidden value=''>Elija un área</option>";
             var j = 1;
-            for(var i=0 ; i<registro.length ; i++) {
+            for(var i = 0 ; i < registro.length ; i++) {
                 areas += "<option value=" +j+ ">"+registro[i]['DescArea']+"</option>";
                 j++;
             }            
@@ -683,3 +685,22 @@ function CargarAreas() {
         }
     });
 }
+
+$("#cbx-expe-new").click(function () {
+    if($("#registrar #cbx-expe-new").is(":checked")) {
+        $("#registrar #dni-usu-new").removeClass("hidden");
+        $("#registrar #dni-usu-new #div-input-group").addClass("input-group");   
+        $("#registrar #dni-usu-new input").prop("required",true);
+    } else {
+        $("#registrar #dni-usu-new").addClass("hidden");
+        $("#registrar #dni-usu-new #div-input-group").removeClass("input-group");
+        $("#registrar #dni-usu-new input").val("");       
+        $("#registrar #dni-usu-new input").prop("required",false);  
+    }
+});
+
+
+$("#cambiar-pass").click(function () {
+    
+    $("#modal-cambiar-pass").modal("show");
+});
