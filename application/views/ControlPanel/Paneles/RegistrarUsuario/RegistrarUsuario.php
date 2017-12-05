@@ -214,11 +214,7 @@
                 <h3 class="modal-title">Tipos de Usuario</h3>
             </div>
             <div class="modal-body">
-                <h3 class="text-azul">Usuario Total</h3> 
-                <h3 class="text-azul">Usuario Parcial</h3> 
-                <h3 class="text-azul">Usuario Envios</h3> 
-                <h3 class="text-azul">Usuario Recepciones</h3>
-                <h3 class="text-azul">Usuario Consultas</h3>               
+                <img src="<?= IMG?>Tipos de Usuarios.jpg"  alt="">              
             </div>
             <div class="modal-footer">                
                 <button type="button" class="btn btn-md btn-default bg-azul text-blanco lead pull-right" data-dismiss="modal"><strong>Cerrar</strong></button>

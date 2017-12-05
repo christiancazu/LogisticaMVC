@@ -8,7 +8,8 @@ $(document).on("ready", VerificarParaRecibir());
 $(document).on("ready", DatosParaModificarRecibir());
 $(document).on("ready", CargarAreas());
 
-
+//$(document).on("ready", Reporte());
+//$(document).on("ready", ExportarAExcel());
 $("#cargar-cp a").click(function () {
     $("#controlpanel").hide();
 });
@@ -140,16 +141,18 @@ function DatosParaModificarRegistrar() {
  * Función invocada por la vista Consultar
  */
 function Consultar() {
-    $("#consultar .btn-consultar").click(function (event) {        
-       Filtrar(""); 
+    $("a[href='#consultar']").on("click",function () {
+        Filtrar(""); 
     });
-    $("#form-consultar #consuexp-input3").on("change keyup blur input",function () {
+
+
+    /* $("#form-consultar #consuexp-input3").on("change keyup blur input",function () {
 
         letra = $("#form-consultar #consuexp-input3").val();
 
         Filtrar(letra);
-    });
-    $("#consultar").on("click", "#table-consulta tr", function (event) {
+    });*/
+    $("#consultar").on("click", "#table-consultar tr", function (event) {
         event.preventDefault();
         expedienteselect = $(this).attr("href");
         MostrarExpediente(expedienteselect);
@@ -188,6 +191,7 @@ function Filtrar(letra) {
         success: function (resultado) {
 
             var registro = eval(resultado);
+            //alert(resultado);
             if (registro.length == 0) {
                 $('#modal-nohayconsulta').modal('show');
                 consultanula = $("#consuexp-input3").val();
@@ -199,12 +203,12 @@ function Filtrar(letra) {
                     $('[href="#tab-reg"]').click();
                 });
             } else {
-                htmlfilas = "";
-                htmlfilas = '<table class="col-md-8 col-md-offset-2 table-bordered table-striped table-condensed cf"><thead class="cf">';
-                htmlfilas += '<tr><th>#</th><th>Código</th><th>Descripción</th><th>Estado</th></tr>';
+                htmlfilas = '';
+                htmlfilas += '<table id="plugindatatable" class="order-column"><thead>';
+                htmlfilas += '<tr><th>Código</th><th>Descripción</th><th>Estado</th></tr>';
                 htmlfilas += '</thead><tbody>';
                 for (var i = 0; i < registro.length; i++) {
-                    htmlfilas += '<tr id="consultar-tr-a-href" href=' + registro[i]['codigo'] + '><td>' + (i + 1) + '</td><td>' + registro[i]['codigo'] + '</td>';
+                    htmlfilas += '<tr id="consultar-tr-a-href" href=' + registro[i]['codigo'] + '><td>' + registro[i]['codigo'] + '</td>';
                     htmlfilas += '<td>' + registro[i]['descripcion'] + '</td>';
                     switch (registro[i]['estado']) {
                         case "Disponible":
@@ -224,11 +228,71 @@ function Filtrar(letra) {
                     });
                 };
                 htmlfilas += '</tr></tbody></table>';
-                $("#consultar #table-consulta").html(htmlfilas);
+
+                $("#consultar #table-consultar").html(htmlfilas);
+                $('#plugindatatable').DataTable();
             }
         }
     });
 }
+
+function Reporte() {
+    $("#reportes #form-reportes").submit(function(e) { 
+        e.preventDefault();
+        var dateinicio = $("#dateinicio").val();
+        var datefinal = $("#datefinal").val();
+        
+    $.ajax({
+        url: "Expediente/Reporte",
+        type: "POST",
+        data: {
+            dateinicio: dateinicio,
+            datefinal: datefinal
+        },
+        success: function (resultado) {
+
+            var registro = eval(resultado);
+            
+            if (registro.length == 0) {
+                $('#modal-nohayconsulta').modal('show');
+                consultanula = $("#consuexp-input3").val();
+                htmlnoencontro = "";
+                htmlnoencontro = '" ' + consultanula + ' "';
+                $("#modal-nohayconsulta #codigo-nulo").html(htmlnoencontro);
+                $("#registrar-expe").click(function () {
+                    $('[href="#registrar"]').click();
+                    $('[href="#tab-reg"]').click();
+                });
+            } else {
+                htmlfilas = '';               
+                htmlfilas += '<table id="plugindatatablereporte" class="order-column"><thead>';
+                htmlfilas += '<tr><th>Nº Movimiento</th><th>Movimiento</th><th>Fecha</th><th>Delegado</th><th>Responsable</th></tr>';
+                htmlfilas += '</thead><tbody>';
+                for (var i = 0; i < registro.length; i++) {
+                    htmlfilas += '<tr id="movimientos-tr-a-href" href=' + registro[i]['CodMovi'] + '>';
+                    htmlfilas += '<td>' + registro[i]['CodMovi'] + '</td>';
+                    htmlfilas += '<td>' + registro[i]['TipoMovi'] + '</td>';
+                    htmlfilas += '<td>' + registro[i]['FecMovi'] + '</td>';
+                    htmlfilas += '<td>' + registro[i]['Delegado'] + '</td>';
+                    htmlfilas += '<td>' + registro[i]['Responsable'] + '</td>';
+                    /* función para convertir TR a href*/
+                    $(document).ready(function () {
+                        $('#movimientos-tr-a-href a').click(function () {
+                            window.location = $(this).attr('href');
+                        });
+                    });
+                };
+                htmlfilas += '</tr></tbody></table>';
+
+                $("#reportes #table-reportes").html(htmlfilas);
+                $('#plugindatatablereporte').DataTable();
+            }
+        }
+    });
+        });
+}
+
+
 /**
  * Función para Mostrar Los Movimientos
  * @param {[[Type]]} codigo [[Description]]
@@ -436,6 +500,10 @@ function ContenidoModalConsultar(dato, valor) {
     msj += '</div></div>';
     return msj;
 }
+
+
+
+
 /**
  * Función que redigige al módulo correspondiente completando el código en el formulario
  * @param {[[Type]]} codigo [[Description]]
@@ -701,6 +769,20 @@ $("#cbx-expe-new").click(function () {
 
 
 $("#cambiar-pass").click(function () {
-    
+
     $("#modal-cambiar-pass").modal("show");
 });
+
+
+
+/*
+DATETIMEPICKER REPORTES
+*/
+function DateTimePicker() {
+    $('#buscar-reportes').on("click",function(e) {
+        e.preventDefault();
+        var date = $('#dateinicio').val();
+
+        //alert(date);
+    });
+}

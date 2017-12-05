@@ -8,6 +8,8 @@
         <title><?= $title ?></title>
         <link href="<?= CSS?>bootstrap.css" rel="stylesheet" media="screen">
         <link href="<?= CSS?>logistica.css" rel="stylesheet" media="screen">
-        <link href="<?= CSS?>font-awesome.min.css" rel="stylesheet" media="screen">       
+        <link href="<?= CSS?>font-awesome.min.css" rel="stylesheet" media="screen">   
+        <link href="<?= CSS?>jquery-ui.css" rel="stylesheet" media="screen"> 
+        <link href="<?= CSS?>dataTables.jqueryui.css" rel="stylesheet" media="screen">    
     </head>
 <body>

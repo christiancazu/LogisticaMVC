@@ -1,5 +1,5 @@
 <div class="container tab-pane fade in" id="consultar">
-    <div class="row">
+   <!-- <div class="row">
         <div class="col-sm-8 col-md-offset-2" style="margin-bottom:20px">
             <div class="panel-consultar">
                 <div class="panel-head bg-azul consultar-border">
@@ -28,9 +28,9 @@
                 </div>    
             </div> 
         </div> 
-    </div>       
+    </div>  -->     
     <div class="row">      
-        <div id="table-consulta">
+        <div id="table-consultar" class="col-sm-10 col-sm-offset-1">
             <!--table que contiene las consultas filtradas cargado desde expediente.js-->  
         </div>
     </div>
