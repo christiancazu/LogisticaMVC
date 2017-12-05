@@ -9,7 +9,6 @@ class Expediente extends CI_Controller {
         parent::__construct();
         $this->load->model('MdlExpediente');
         $this->objExpediente = new MdlExpediente();
-        $this->load->library('export_excel');
     } 
     /**
      * Función llamada desde la vista Consultar y envia la consulta filtrada
@@ -93,13 +92,6 @@ class Expediente extends CI_Controller {
         $datefinal = $this -> input -> post("datefinal");
         $resultado = $this -> objExpediente -> Reporte($dateinicio, $datefinal);
         echo json_encode($resultado);
-    }
-    public function ExportarAExcel() {
-        $dateinicio = $this -> input -> post("dateinicio");
-        $datefinal = $this -> input -> post("datefinal");
-        $resultado = $this -> objExpediente -> ExportarAExcel($dateinicio, $datefinal);
-        $this->export_excel->to_excel($resultado, 'reporte');
-        //echo json_encode($resultado);
     }
       
 }

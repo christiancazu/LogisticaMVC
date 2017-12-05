@@ -178,9 +178,5 @@ class MdlExpediente extends CI_Model {
         $resultado = $this->db->query("CALL sp_TodoMovimiento('".$dateinicio."','".$datefinal."')");
         return $resultado -> result();
     }
-    public function ExportarAExcel($dateinicio, $datefinal) {
-        $resultado = $this->db->query("CALL sp_TodoMovimiento('".$dateinicio."','".$datefinal."')");
-        return $resultado;
-    }
     
 }

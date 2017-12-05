@@ -5,10 +5,10 @@
                 <div class="panel-head bg-azul consultar-border">
                     <h4 class="text-center">Reporte de Expediente</h4>
                 </div>
-                <form id="form-reportes" method="post" action="<?= base_url()?>Expediente/ExportarAExcel">
+                <form id="form-reportes">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-xs-2">
+                            <div class="col-xs-3">
                                 <div class="form-group">
                                     <h4><label class="text-azul pull-right">Ingrese Fecha :</label></h4>
                                 </div>
@@ -41,14 +41,9 @@
 
 
                             </div>
-                            <div class="col-xs-2">
+                            <div class="col-xs-3">
                                 <div class="form-group">
                                      <button class="btn-consultar" id="buscar-reportes">Generar Reporte</button>
-                                </div>
-                            </div>
-                            <div class="col-xs-2">
-                                <div class="form-group">
-                                     <button class="btn-consultar" id="exportaraexcel">Exportar a Excel</button>
                                 </div>
                             </div>
                         </div>                

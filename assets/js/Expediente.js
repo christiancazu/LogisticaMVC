@@ -8,8 +8,8 @@ $(document).on("ready", VerificarParaRecibir());
 $(document).on("ready", DatosParaModificarRecibir());
 $(document).on("ready", CargarAreas());
 
-//$(document).on("ready", Reporte());
-//$(document).on("ready", ExportarAExcel());
+$(document).on("ready", Reporte());
+
 $("#cargar-cp a").click(function () {
     $("#controlpanel").hide();
 });
@@ -264,7 +264,7 @@ function Reporte() {
                     $('[href="#tab-reg"]').click();
                 });
             } else {
-                htmlfilas = '';               
+                htmlfilas = '';
                 htmlfilas += '<table id="plugindatatablereporte" class="order-column"><thead>';
                 htmlfilas += '<tr><th>Nº Movimiento</th><th>Movimiento</th><th>Fecha</th><th>Delegado</th><th>Responsable</th></tr>';
                 htmlfilas += '</thead><tbody>';
@@ -500,10 +500,6 @@ function ContenidoModalConsultar(dato, valor) {
     msj += '</div></div>';
     return msj;
 }
-
-
-
-
 /**
  * Función que redigige al módulo correspondiente completando el código en el formulario
  * @param {[[Type]]} codigo [[Description]]
